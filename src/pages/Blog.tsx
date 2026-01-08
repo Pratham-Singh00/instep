@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { SmartLink } from "@/components/SmartLink";
 import { 
   Calendar, 
   User, 
@@ -15,6 +16,7 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useContent } from "@/context/ContentContext";
 
 // WordPress API integration structure (to be connected to actual WordPress API)
 interface BlogPost {
@@ -28,16 +30,32 @@ interface BlogPost {
   tags: string[];
   featured_image: string;
   slug: string;
-  views: number;
+  link?: string;
+  readingTime?: string;
+  views?: number;
 }
+
+const toPlainText = (value: string) =>
+  value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const {
+    content: { blogPage },
+    hasWordPressSource,
+  } = useContent();
 
   // Sample blog posts - replace with WordPress API calls
+  const wpBridge = typeof window !== "undefined" ? window.instepCommunityConnect : undefined;
+
   const samplePosts: BlogPost[] = [
     {
       id: 1,
@@ -93,32 +111,95 @@ const Blog = () => {
     }
   ];
 
-  const categories = ["all", "Therapy", "DBT", "Reentry Support", "Domestic Violence", "Family", "Parenting", "Recovery"];
-
   useEffect(() => {
     // Simulate API call - replace with actual WordPress API integration
     const fetchPosts = async () => {
       setLoading(true);
-      // TODO: Replace with actual WordPress REST API call
-      // const response = await fetch('/wp-json/wp/v2/posts');
-      // const data = await response.json();
-      
-      setTimeout(() => {
+      setError(null);
+      if (!wpBridge?.endpoints?.posts) {
         setPosts(samplePosts);
         setLoading(false);
-      }, 1000);
+        return;
+      }
+
+      try {
+        const response = await fetch(`${wpBridge.endpoints.posts}?_embed&per_page=20`);
+        if (!response.ok) {
+          throw new Error(`Failed to load posts (${response.status})`);
+        }
+
+        const data = await response.json();
+        const mappedPosts: BlogPost[] = data.map((post: any) => {
+          const embedded = post._embedded || {};
+          const author = embedded.author?.[0]?.name ?? "In Step";
+          const categories = (embedded["wp:term"]?.[0] || [])
+            .map((term: any) => term.name)
+            .filter(Boolean);
+          const tags = (embedded["wp:term"]?.[1] || [])
+            .map((term: any) => term.name)
+            .filter(Boolean);
+          const featured = embedded["wp:featuredmedia"]?.[0]?.source_url ?? "/api/placeholder/400/250";
+          const contentHtml = post.content?.rendered ?? "";
+          const contentText = toPlainText(contentHtml);
+          const words = contentText.split(/\s+/).filter(Boolean).length;
+          const readingTimeMinutes = Math.max(1, Math.round(words / 200));
+
+          return {
+            id: post.id,
+            title: post.title?.rendered ?? "Untitled",
+            excerpt: toPlainText(post.excerpt?.rendered ?? contentHtml ?? ""),
+            content: contentHtml,
+            author,
+            date: post.date,
+            categories,
+            tags,
+            featured_image: featured,
+            slug: post.slug,
+            link: post.link,
+            readingTime: `${readingTimeMinutes} min read`,
+          } satisfies BlogPost;
+        });
+
+        setPosts(mappedPosts.length ? mappedPosts : samplePosts);
+      } catch (err) {
+        console.error("Unable to load WordPress posts", err);
+        setPosts(samplePosts);
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchPosts();
-  }, []);
+  }, [hasWordPressSource, wpBridge?.endpoints?.posts]);
 
-  const filteredPosts = posts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+  const derivedCategories = useMemo(() => {
+    const allCategories = new Set<string>();
+    posts.forEach((post) => {
+      post.categories.forEach((category) => {
+        if (category) {
+          allCategories.add(category);
+        }
+      });
+    });
+    return ["all", ...Array.from(allCategories).sort()];
+  }, [posts]);
+
+  const filteredPosts = posts.filter((post) => {
+    const plainExcerpt = post.excerpt.replace(/<[^>]+>/g, "");
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      plainExcerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "all" || post.categories.includes(selectedCategory);
-    
+
     return matchesSearch && matchesCategory;
   });
+
+  useEffect(() => {
+    if (!derivedCategories.includes(selectedCategory)) {
+      setSelectedCategory("all");
+    }
+  }, [derivedCategories, selectedCategory]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -137,11 +218,10 @@ const Blog = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gradient">
-                Resources & Articles
+                {blogPage.heading}
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Expert insights, practical tips, and valuable resources for mental health, 
-                recovery, and building stronger communities.
+                {blogPage.description}
               </p>
             </div>
 
@@ -164,7 +244,7 @@ const Blog = () => {
                     onChange={(e) => setSelectedCategory(e.target.value)}
                     className="px-3 py-2 border border-input bg-background rounded-md text-sm"
                   >
-                    {categories.map(category => (
+                    {derivedCategories.map(category => (
                       <option key={category} value={category}>
                         {category === "all" ? "All Categories" : category}
                       </option>
@@ -172,6 +252,11 @@ const Blog = () => {
                   </select>
                 </div>
               </div>
+              {error ? (
+                <p className="text-center text-sm text-destructive mt-4">
+                  Unable to load the latest WordPress posts. Showing fallback articles.
+                </p>
+              ) : null}
             </div>
           </div>
         </section>
@@ -200,7 +285,7 @@ const Blog = () => {
                 <p className="text-muted-foreground">
                   {searchTerm || selectedCategory !== "all" 
                     ? "Try adjusting your search or filter criteria."
-                    : "Check back soon for new articles and resources."
+                    : blogPage.emptyState
                   }
                 </p>
               </div>
@@ -216,7 +301,7 @@ const Blog = () => {
                       />
                       <div className="absolute top-4 left-4">
                         <Badge variant="secondary" className="bg-background/90">
-                          {post.categories[0]}
+                          {post.categories[0] ?? "General"}
                         </Badge>
                       </div>
                     </div>
@@ -241,15 +326,24 @@ const Blog = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Clock className="h-3 w-3" />
-                          <span>5 min read</span>
+                          <span>{post.readingTime ?? "5 min read"}</span>
                           <span>•</span>
                           <Eye className="h-3 w-3" />
-                          <span>{post.views} views</span>
+                          <span>{post.views ?? "—"} views</span>
                         </div>
                         
-                        <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                          Read More
-                          <ArrowRight className="ml-1 h-3 w-3" />
+                        <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80" asChild>
+                          {post.link ? (
+                            <a href={post.link} target="_blank" rel="noopener noreferrer">
+                              Read More
+                              <ArrowRight className="ml-1 h-3 w-3" />
+                            </a>
+                          ) : (
+                            <SmartLink href={`/blog/${post.slug}`}>
+                              Read More
+                              <ArrowRight className="ml-1 h-3 w-3" />
+                            </SmartLink>
+                          )}
                         </Button>
                       </div>
                       
@@ -269,14 +363,15 @@ const Blog = () => {
             {/* WordPress Integration Note */}
             <div className="mt-16 p-6 bg-muted/30 rounded-lg border border-muted">
               <h3 className="text-lg font-semibold mb-2 text-foreground">
-                WordPress Integration Ready
+                WordPress Integration {hasWordPressSource ? "Active" : "Ready"}
               </h3>
               <p className="text-muted-foreground mb-4">
-                This blog page is structured to integrate with WordPress CMS. New posts published 
-                in WordPress will automatically appear here through the REST API.
+                {hasWordPressSource
+                  ? "Posts are being pulled directly from WordPress. Publish new content in WordPress to see it here instantly."
+                  : "Connect this site to WordPress and publish posts—this page will automatically render them via the REST API."}
               </p>
               <div className="text-sm text-muted-foreground">
-                <strong>WordPress API Endpoint:</strong> <code>/wp-json/wp/v2/posts</code><br/>
+                <strong>WordPress API Endpoint:</strong> <code>{wpBridge?.endpoints?.posts ?? "/wp-json/wp/v2/posts"}</code><br/>
                 <strong>Featured Images:</strong> Automatically pulled from WordPress media library<br/>
                 <strong>Categories & Tags:</strong> Synced with WordPress taxonomy
               </div>

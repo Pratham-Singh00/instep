@@ -1,19 +1,26 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
+import { useContent } from "@/context/ContentContext";
+import { SmartLink } from "@/components/SmartLink";
+import type { NavMenuItem } from "@/types/content";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {
+    content: {
+      navigation: { phone, logoText, logoAccent, clientPortal, primaryCta, menu },
+    },
+  } = useContent();
 
-  const navigation = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Programs", href: "#programs" },
-    { name: "Our Team", href: "/team" },
-    { name: "Resources", href: "/blog" },
-    { name: "Partner With Us", href: "#get-involved" },
-    { name: "Contact", href: "#contact" },
-  ];
+  const normalizedMenu = useMemo(
+    () =>
+      menu.map((item: NavMenuItem) => ({
+        ...item,
+        href: item.href || "#",
+      })),
+    [menu],
+  );
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-navy/20">
@@ -22,14 +29,19 @@ const Header = () => {
         <div className="flex items-center justify-between py-2 border-b border-navy-foreground/20">
           <div className="flex items-center space-x-2 text-navy-foreground text-sm">
             <Phone className="h-4 w-4" />
-            <span className="font-medium">703-876-8480</span>
+            <span className="font-medium">{phone}</span>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm" className="bg-transparent border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-              Client Portal
+            <Button
+              variant="outline"
+              size="sm"
+              className="bg-transparent border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+              asChild
+            >
+              <SmartLink href={clientPortal.url || "#"}>{clientPortal.label}</SmartLink>
             </Button>
-            <Button className="btn-hero text-sm px-4 py-2">
-              Contact Us
+            <Button className="btn-hero text-sm px-4 py-2" asChild>
+              <SmartLink href={primaryCta.url || "#contact"}>{primaryCta.label}</SmartLink>
             </Button>
           </div>
         </div>
@@ -38,21 +50,27 @@ const Header = () => {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-navy-foreground">
-              In Step <span className="text-primary">- - -</span>
-            </h1>
+            <SmartLink 
+              href="/"
+              className="cursor-pointer"
+            >
+              <h1 className="text-2xl font-bold text-navy-foreground">
+                {logoText}{" "}
+                {logoAccent ? <span className="text-primary">{logoAccent}</span> : null}
+              </h1>
+            </SmartLink>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
+            {normalizedMenu.map((item) => (
+              <SmartLink
+                key={item.label}
                 href={item.href}
-                className="text-navy-foreground hover:text-primary transition-colors duration-200 font-medium link-underline"
+                className="text-navy-foreground hover:text-primary transition-colors duration-200 font-medium link-underline cursor-pointer"
               >
-                {item.name}
-              </a>
+                {item.label}
+              </SmartLink>
             ))}
           </nav>
 
@@ -72,22 +90,26 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-navy-foreground/20">
             <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
+              {normalizedMenu.map((item) => (
+                <SmartLink
+                  key={item.label}
                   href={item.href}
-                  className="text-navy-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
                   onClick={() => setIsMenuOpen(false)}
+                  className="text-navy-foreground hover:text-primary transition-colors duration-200 font-medium py-2 cursor-pointer"
                 >
-                  {item.name}
-                </a>
+                  {item.label}
+                </SmartLink>
               ))}
               <div className="flex flex-col space-y-2 pt-4 border-t border-navy-foreground/20">
-                <Button variant="outline" className="bg-transparent border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                  Client Portal
+                <Button
+                  variant="outline"
+                  className="bg-transparent border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                  asChild
+                >
+                  <SmartLink href={clientPortal.url || "#"}>{clientPortal.label}</SmartLink>
                 </Button>
-                <Button className="btn-hero">
-                  Contact Us
+                <Button className="btn-hero" asChild>
+                  <SmartLink href={primaryCta.url || "#contact"}>{primaryCta.label}</SmartLink>
                 </Button>
               </div>
             </nav>

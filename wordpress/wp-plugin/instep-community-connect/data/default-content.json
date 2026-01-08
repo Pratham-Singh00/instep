@@ -1,0 +1,689 @@
+{
+  "navigation": {
+    "phone": "703-876-8480",
+    "logoText": "In Step",
+    "logoAccent": "- - -",
+    "clientPortal": {
+      "label": "Client Portal",
+      "url": "#"
+    },
+    "primaryCta": {
+      "label": "Contact Us",
+      "url": "#contact"
+    },
+    "menu": [
+      { "label": "About", "href": "#about", "type": "anchor" },
+      { "label": "Services", "href": "#services", "type": "anchor" },
+      { "label": "Programs", "href": "#programs", "type": "anchor" },
+      { "label": "Our Team", "href": "/team", "type": "route" },
+      { "label": "Resources", "href": "/blog", "type": "route" },
+      { "label": "Partner With Us", "href": "#get-involved", "type": "anchor" },
+      { "label": "Contact", "href": "#contact", "type": "anchor" }
+    ]
+  },
+  "hero": {
+    "bannerText": "🌟 Groups are NOW FORMING! Contact Us for More Information.",
+    "tagline": "WELCOME TO IN STEP",
+    "titleBefore": "Walking",
+    "titleHighlight": "in step",
+    "titleAfter": "with you on your journey.",
+    "description": "For nearly 30 years, In Step has been providing comprehensive mental health services, community programs, and specialized support for reentry and domestic violence survivors.",
+    "primaryCta": {
+      "label": "Learn More About Our Services",
+      "url": "#services"
+    },
+    "secondaryCta": {
+      "label": "Get Started Today",
+      "url": "#contact"
+    },
+    "stats": [
+      { "icon": "Heart", "value": "30+", "label": "Years of Service" },
+      { "icon": "Users", "value": "1000+", "label": "Lives Impacted" },
+      { "icon": "Users", "value": "50+", "label": "Group Programs" }
+    ]
+  },
+  "about": {
+    "heading": "The In Step Difference",
+    "description": "For nearly 30 years, In Step has been a beacon of hope in our community, providing comprehensive mental health services with a focus on inclusion, healing, and empowerment.",
+    "storyHeading": "Our Story & Mission",
+    "storyParagraphs": [
+      "Founded with the vision of walking alongside individuals on their mental health journey, In Step has grown from a small practice to a comprehensive community mental health center serving diverse populations with specialized care.",
+      "We specialize in offering a wide range of group treatments including our renowned DBT skills groups, Stepping Stones social skills for children and teens, and innovative programs for reentry support and domestic violence survivors.",
+      "Our team takes special care to match individuals with appropriate support chronologically, developmentally, and emotionally, ensuring that every person receives the most effective and personalized care possible."
+    ],
+    "certificationsHeading": "Our Expertise & Certifications",
+    "certifications": [
+      "Licensed Clinical Social Workers",
+      "Trauma-Informed Care Certified",
+      "DBT Skills Training Certified",
+      "Crisis Intervention Specialists",
+      "LGBTQ+ Affirming Therapy",
+      "Culturally Responsive Practice"
+    ],
+    "impactHeading": "Our Impact",
+    "achievements": [
+      { "icon": "Award", "value": "30+", "label": "Years of Service" },
+      { "icon": "Heart", "value": "1,000+", "label": "Lives Impacted" },
+      { "icon": "Users", "value": "50+", "label": "Group Programs" },
+      { "icon": "Star", "value": "95%", "label": "Client Satisfaction" }
+    ],
+    "valuesHeading": "Our Core Values",
+    "values": [
+      {
+        "icon": "Heart",
+        "title": "Compassionate Care",
+        "description": "We believe in treating every individual with dignity, respect, and genuine empathy throughout their healing journey."
+      },
+      {
+        "icon": "Users",
+        "title": "Community Focused",
+        "description": "Our programs are designed to strengthen the entire community, creating lasting positive change for all."
+      },
+      {
+        "icon": "Shield",
+        "title": "Safe & Inclusive",
+        "description": "We provide a safe, welcoming environment where everyone feels valued regardless of their background or circumstances."
+      },
+      {
+        "icon": "Target",
+        "title": "Evidence-Based",
+        "description": "All our interventions are grounded in research and proven therapeutic approaches for maximum effectiveness."
+      }
+    ],
+    "cta": {
+      "heading": "Join Our Community of Healing",
+      "description": "Experience the In Step difference for yourself. Our compassionate team is ready to walk alongside you on your journey toward mental wellness and personal growth.",
+      "primaryCta": {
+        "label": "Schedule Your First Visit",
+        "url": "#contact"
+      },
+      "secondaryCta": {
+        "label": "Learn More About Our Team",
+        "url": "/team"
+      }
+    }
+  },
+  "services": {
+    "heading": "Our Services",
+    "description": "We specialize in offering a wide range of individual and group treatments, taking special care to match individuals with the appropriate support chronologically, developmentally, and emotionally.",
+    "items": [
+      {
+        "icon": "User",
+        "title": "Individual Therapy",
+        "description": "Individual therapy provides a safe space to unpack your thoughts, explore your feelings, and work through challenges one-on-one with an experienced clinician.",
+        "image": null,
+        "alt": "Professional mental health counselor having a one-on-one session with a client in a comfortable office setting",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Users",
+        "title": "Group Therapy",
+        "description": "Group therapy provides a platform for children, teens, and adults to cultivate healthy relationships, navigate challenges, and hone new skills within a nurturing environment.",
+        "image": null,
+        "alt": "Diverse group of people in a supportive group therapy session sitting in a circle",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Home",
+        "title": "Family Therapy",
+        "description": "Family therapy paves the way for peace at home by strengthening bonds, resolving conflicts, and establishing healthy boundaries.",
+        "image": null,
+        "alt": "Happy diverse family with parents and children in a warm, supportive therapy environment",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Brain",
+        "title": "Psychological Testing",
+        "description": "Psycho-educational testing offers valuable insights into the roots of challenges, supplying essential data to guide therapeutic and educational interventions effectively.",
+        "image": null,
+        "alt": "Professional assessment and testing environment for psychological evaluation",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      }
+    ],
+    "cta": {
+      "heading": "Ready to Take the First Step?",
+      "description": "Our experienced team is here to support you on your mental health journey. Contact us today to learn more about our services and how we can help.",
+      "primaryCta": {
+        "label": "Schedule a Consultation",
+        "url": "#contact"
+      },
+      "secondaryCta": {
+        "label": "Call 703-876-8480",
+        "url": "tel:703-876-8480"
+      }
+    }
+  },
+  "programs": {
+    "heading": "Community Programs",
+    "description": "Beyond traditional therapy, we offer specialized community programs designed to support individuals and families facing unique challenges and transitions.",
+    "items": [
+      {
+        "icon": "Shield",
+        "title": "Reentry Support Program",
+        "description": "Comprehensive support for individuals transitioning back into the community, including counseling, life skills training, and resource connection.",
+        "duration": "12-week program",
+        "location": "Group & Individual Sessions",
+        "features": ["Individual counseling", "Job readiness training", "Housing assistance", "Peer support groups"],
+        "badge": "New Program",
+        "badgeVariant": "default",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Heart",
+        "title": "Domestic Violence Support",
+        "description": "Safe, confidential support for survivors of domestic violence with trauma-informed care and empowerment-focused interventions.",
+        "duration": "Ongoing support",
+        "location": "Safe, private setting",
+        "features": ["Crisis intervention", "Safety planning", "Trauma therapy", "Legal advocacy support"],
+        "badge": "24/7 Support",
+        "badgeVariant": "secondary",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Users",
+        "title": "DBT Skills Groups",
+        "description": "Dialectical Behavior Therapy skills training in a supportive group environment, focusing on mindfulness, emotion regulation, and interpersonal effectiveness.",
+        "duration": "16-week cycles",
+        "location": "Group therapy rooms",
+        "features": ["Mindfulness training", "Emotion regulation", "Distress tolerance", "Interpersonal skills"],
+        "badge": "Evidence-Based",
+        "badgeVariant": "outline",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "BookOpen",
+        "title": "Stepping Stones (Youth)",
+        "description": "Social skills development for children and teens, focusing on building healthy relationships and emotional intelligence.",
+        "duration": "8-12 weeks",
+        "location": "Youth-friendly spaces",
+        "features": ["Social skills training", "Peer interaction", "Confidence building", "Parent involvement"],
+        "badge": "Ages 8-18",
+        "badgeVariant": "secondary",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Home",
+        "title": "Parenting Skills Program",
+        "description": "Evidence-based parenting education and support to strengthen family relationships and improve communication.",
+        "duration": "10-week program",
+        "location": "Family therapy rooms",
+        "features": ["Communication skills", "Boundary setting", "Discipline strategies", "Family dynamics"],
+        "badge": "Family-Focused",
+        "badgeVariant": "outline",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Briefcase",
+        "title": "Community Workshops",
+        "description": "Educational workshops on mental health topics, stress management, and wellness strategies for community members.",
+        "duration": "Monthly events",
+        "location": "Community center",
+        "features": ["Mental health education", "Stress management", "Wellness strategies", "Community building"],
+        "badge": "Free to Public",
+        "badgeVariant": "default",
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      }
+    ],
+    "crisisBanner": {
+      "heading": "Crisis Support Available 24/7",
+      "description": "If you or someone you know is in crisis or experiencing domestic violence, immediate help is available. Don't wait – reach out now.",
+      "primaryCta": {
+        "label": "Crisis Hotline: 988",
+        "url": "tel:988"
+      },
+      "secondaryCta": {
+        "label": "Contact Our Crisis Team",
+        "url": "#contact"
+      }
+    }
+  },
+  "testimonials": {
+    "heading": "Stories of Hope & Healing",
+    "description": "Hear from real people whose lives have been transformed through our programs and services. Your story of healing could be next.",
+    "items": [
+      {
+        "name": "Sarah M.",
+        "role": "DBT Skills Group Participant",
+        "content": "The DBT skills group at In Step changed my life. I learned how to manage my emotions and build healthier relationships. The group was so supportive and the facilitators were amazing.",
+        "rating": 5,
+        "location": "Arlington, VA"
+      },
+      {
+        "name": "Michael R.",
+        "role": "Reentry Program Graduate",
+        "content": "Coming back to the community was scary, but the reentry program gave me the tools and support I needed. They helped me find housing, employment, and most importantly, hope for the future.",
+        "rating": 5,
+        "location": "Alexandria, VA"
+      },
+      {
+        "name": "Jennifer L.",
+        "role": "Family Therapy Client",
+        "content": "Our family was struggling to communicate, but through family therapy at In Step, we learned to listen to each other and work through our problems together. We're stronger than ever now.",
+        "rating": 5,
+        "location": "Fairfax, VA"
+      },
+      {
+        "name": "David K.",
+        "role": "Individual Therapy Client",
+        "content": "After years of struggling with anxiety and depression, I finally found the right therapist at In Step. The individual attention and evidence-based approach made all the difference.",
+        "rating": 5,
+        "location": "Reston, VA"
+      },
+      {
+        "name": "Maria S.",
+        "role": "Domestic Violence Survivor",
+        "content": "The support I received after leaving an abusive relationship was incredible. The staff understood my trauma and helped me rebuild my confidence and sense of safety. I'm forever grateful.",
+        "rating": 5,
+        "location": "Vienna, VA"
+      },
+      {
+        "name": "James T.",
+        "role": "Parent in Parenting Skills Program",
+        "content": "The parenting program taught me how to set boundaries while showing love and support. My relationship with my teenager has improved dramatically. Highly recommend to any parent struggling.",
+        "rating": 5,
+        "location": "McLean, VA"
+      }
+    ],
+    "cta": {
+      "heading": "Ready to Start Your Journey?",
+      "description": "Join hundreds of others who have found hope, healing, and transformation through our compassionate mental health services and community programs.",
+      "primaryCta": {
+        "label": "Begin Your Healing Journey",
+        "url": "#contact"
+      },
+      "secondaryCta": {
+        "label": "Share Your Story",
+        "url": "#contact"
+      }
+    }
+  },
+  "getInvolved": {
+    "heading": "Partner With Us",
+    "description": "Join our mission to expand access to quality mental health care through strategic partnerships, professional services, and community collaboration.",
+    "businessServicesHeading": "Professional Services",
+    "businessServicesDescription": "We offer comprehensive mental health solutions for organizations, businesses, and professional groups.",
+    "businessServices": [
+      {
+        "icon": "Briefcase",
+        "title": "Corporate Mental Health Programs",
+        "description": "Comprehensive workplace mental health solutions including employee assistance programs, stress management workshops, and leadership training.",
+        "features": ["Employee Counseling", "Stress Management", "Leadership Training", "Crisis Response"],
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Users",
+        "title": "Community Partnerships",
+        "description": "Partner with us to bring mental health services to your organization or community group through tailored programs and workshops.",
+        "features": ["Custom Workshops", "Group Training", "Community Outreach", "Professional Development"],
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Building",
+        "title": "Training & Consultation",
+        "description": "Professional training services for healthcare providers, social workers, and other professionals in trauma-informed care and evidence-based practices.",
+        "features": ["Professional Training", "Consultation Services", "Continuing Education", "Certification Programs"],
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Target",
+        "title": "Specialized Program Development",
+        "description": "Work with us to develop custom programs for specific populations, including reentry support, domestic violence recovery, and parenting skills.",
+        "features": ["Program Design", "Implementation Support", "Outcome Measurement", "Staff Training"],
+        "cta": {
+          "label": "Learn More",
+          "url": "#contact"
+        }
+      }
+    ],
+    "partnershipsHeading": "Partnership Opportunities",
+    "partnershipsDescription": "We actively seek partnerships with organizations that share our commitment to improving mental health outcomes in our community.",
+    "partnerships": [
+      {
+        "title": "Healthcare Organizations",
+        "description": "Collaborate with hospitals, clinics, and healthcare systems to provide integrated mental health services."
+      },
+      {
+        "title": "Educational Institutions",
+        "description": "Partner with schools, colleges, and universities to support student mental health and staff wellness."
+      },
+      {
+        "title": "Legal & Justice System",
+        "description": "Work with courts, probation offices, and legal organizations to provide specialized reentry and rehabilitation services."
+      },
+      {
+        "title": "Community Organizations",
+        "description": "Join forces with nonprofits, faith-based organizations, and community centers to expand access to mental health care."
+      }
+    ],
+    "cta": {
+      "heading": "Start a Partnership",
+      "description": "Whether you're looking for professional training, employee mental health programs, or community partnership opportunities, we'd love to hear from you.",
+      "primaryCta": {
+        "label": "Contact Us",
+        "url": "#contact"
+      },
+      "secondaryCta": {
+        "label": "Call 703-876-8480",
+        "url": "tel:703-876-8480"
+      }
+    }
+  },
+  "contact": {
+    "heading": "Contact Us",
+    "description": "Ready to take the first step? We're here to answer your questions and help you find the right support for your mental health journey.",
+    "introHeading": "Get in Touch",
+    "introDescription": "Our compassionate team is ready to support you. Choose the contact method that feels most comfortable for you.",
+    "contactMethods": [
+      {
+        "icon": "Phone",
+        "title": "Phone",
+        "primary": "703-876-8480",
+        "secondary": "Main office line",
+        "action": "tel:703-876-8480"
+      },
+      {
+        "icon": "Mail",
+        "title": "Email",
+        "primary": "info@insteppc.com",
+        "secondary": "General inquiries",
+        "action": "mailto:info@insteppc.com"
+      },
+      {
+        "icon": "MapPin",
+        "title": "Location",
+        "primary": "Northern Virginia",
+        "secondary": "Serving Arlington, Alexandria, Fairfax",
+        "action": null
+      },
+      {
+        "icon": "Clock",
+        "title": "Hours",
+        "primary": "Mon-Fri: 8AM-7PM",
+        "secondary": "Weekend & evening appointments available",
+        "action": null
+      }
+    ],
+    "services": [
+      "Individual Therapy",
+      "Group Therapy",
+      "Family Therapy",
+      "DBT Skills Groups",
+      "Reentry Support Program",
+      "Domestic Violence Support",
+      "Parenting Skills Program",
+      "Psychological Testing",
+      "Community Workshops",
+      "Crisis Support"
+    ],
+    "urgencyLevels": [
+      { "value": "routine", "label": "Routine (1-2 weeks)", "color": "success" },
+      { "value": "urgent", "label": "Urgent (within 1 week)", "color": "warning" },
+      { "value": "crisis", "label": "Crisis (immediate attention)", "color": "destructive" }
+    ],
+    "crisis": {
+      "heading": "Crisis Support Available 24/7",
+      "description": "If you're experiencing a mental health crisis or thoughts of self-harm, immediate help is available.",
+      "primaryCta": {
+        "label": "Call 988 - Crisis Hotline",
+        "url": "tel:988"
+      },
+      "secondaryCta": {
+        "label": "Call 911 - Emergency",
+        "url": "tel:911"
+      }
+    },
+    "privacyNote": "Your privacy is important to us. This form is secure and confidential. We will never share your information without your consent.",
+    "formSuccess": {
+      "title": "Message Sent!",
+      "description": "Thank you for contacting us. We'll respond within 24-48 hours."
+    },
+    "formValidation": {
+      "missingTitle": "Missing Information",
+      "missingDescription": "Please fill in all required fields.",
+      "crisisTitle": "Crisis Support",
+      "crisisDescription": "For immediate crisis support, please call 988 or visit your nearest emergency room."
+    }
+  },
+  "footer": {
+    "emergencyBanner": {
+      "heading": "Crisis Support Available 24/7",
+      "resources": [
+        { "label": "Crisis Hotline", "number": "988", "description": "24/7 Crisis Support" },
+        { "label": "Emergency", "number": "911", "description": "Life-threatening emergencies" },
+        { "label": "Domestic Violence", "number": "1-800-799-7233", "description": "National hotline" }
+      ]
+    },
+    "about": {
+      "heading": "In Step",
+      "accent": "- - -",
+      "description": "Walking in step with you on your journey. For nearly 30 years, we've been providing comprehensive mental health services and community support programs.",
+      "phone": "703-876-8480",
+      "email": "info@insteppc.com",
+      "location": "Northern Virginia Area"
+    },
+    "newsletter": {
+      "heading": "Stay Connected",
+      "description": "Get updates on our programs, workshops, and mental health resources.",
+      "placeholder": "Your email",
+      "cta": {
+        "label": "Sign Up",
+        "url": "#"
+      }
+    },
+    "links": {
+      "services": [
+        { "label": "Individual Therapy", "href": "#services" },
+        { "label": "Group Therapy", "href": "#services" },
+        { "label": "Family Therapy", "href": "#services" },
+        { "label": "Psychological Testing", "href": "#services" }
+      ],
+      "programs": [
+        { "label": "DBT Skills Groups", "href": "#programs" },
+        { "label": "Reentry Support", "href": "#programs" },
+        { "label": "Domestic Violence Support", "href": "#programs" },
+        { "label": "Youth Programs", "href": "#programs" }
+      ],
+      "company": [
+        { "label": "About Us", "href": "#about" },
+        { "label": "Our Team", "href": "/team" },
+        { "label": "Careers", "href": "#" },
+        { "label": "Privacy Policy", "href": "#" }
+      ]
+    },
+    "bottomBar": {
+      "legal": "Licensed mental health practice.",
+      "links": [
+        { "label": "Privacy Policy", "href": "#" },
+        { "label": "Terms of Service", "href": "#" },
+        { "label": "Accessibility", "href": "#" }
+      ]
+    }
+  },
+  "team": {
+    "heading": "Our Team",
+    "description": "Meet our dedicated team of licensed professionals who are committed to providing compassionate, evidence-based mental health care to our community.",
+    "members": [
+      {
+        "name": "Cathi Cohen",
+        "title": "In Step Founder and Clinical Director",
+        "credentials": ["LCSW", "CGP"],
+        "bio": "Cathi Cohen is the founder and clinical director of In Step PC. With nearly 30 years of experience in mental health services, she has dedicated her career to walking alongside individuals on their healing journey and providing evidence-based therapeutic care.",
+        "image": null,
+        "specialties": ["Group Therapy", "Trauma-Informed Care", "DBT", "Leadership"],
+        "languages": ["English"],
+        "email": "cathi@insteppc.com",
+        "phone": "703-876-8480"
+      },
+      {
+        "name": "Dale Sorg",
+        "title": "Licensed Educator",
+        "credentials": ["M.A.", "Ed.S"],
+        "bio": "Dale Sorg brings expertise in educational support and learning differences. With a master's degree and education specialist credential, Dale works to support individuals in achieving their educational and personal goals.",
+        "image": null,
+        "specialties": ["Education Support", "Learning Differences", "Skills Training"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Erika Carlson",
+        "title": "Licensed Clinical Social Worker",
+        "credentials": ["LCSW"],
+        "bio": "Erika Carlson is a dedicated licensed clinical social worker committed to providing compassionate, individualized care. She specializes in various therapeutic modalities to support clients' mental health and personal growth.",
+        "image": null,
+        "specialties": ["Individual Therapy", "Clinical Social Work", "Mental Health Support"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Mary Shuffleton",
+        "title": "Licensed Professional Counselor",
+        "credentials": ["LPC", "CGP"],
+        "bio": "Mary Shuffleton is an experienced licensed professional counselor with expertise in group therapy and clinical work. She is dedicated to creating safe, supportive therapeutic environments for clients.",
+        "image": null,
+        "specialties": ["Group Therapy", "Clinical Counseling", "Therapeutic Support"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Jennifer Case",
+        "title": "Licensed Professional Counselor",
+        "credentials": ["Ph.D.", "LPC"],
+        "bio": "Dr. Jennifer Case brings advanced expertise with a doctoral degree and extensive clinical experience. She is passionate about providing evidence-based counseling and supporting clients in their mental health journey.",
+        "image": null,
+        "specialties": ["Clinical Counseling", "Evidence-Based Therapy", "Professional Training"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Christina Marcone",
+        "title": "Licensed Clinical Social Worker",
+        "credentials": ["LCSW"],
+        "bio": "Christina Marcone is a compassionate licensed clinical social worker dedicated to providing quality mental health services. She works to support clients' recovery and resilience through therapeutic intervention.",
+        "image": null,
+        "specialties": ["Clinical Social Work", "Mental Health Support", "Individual Therapy"],
+        "languages": ["English"]
+      },
+      {
+        "name": "James A. Sebben",
+        "title": "Licensed Marriage and Family Therapist",
+        "credentials": ["EdD", "LPC", "LMFT"],
+        "bio": "James A. Sebben brings a wealth of experience with an education doctorate and credentials in both counseling and marriage and family therapy. He specializes in systemic and family-focused therapeutic approaches.",
+        "image": null,
+        "specialties": ["Marriage and Family Therapy", "Systemic Therapy", "Educational Leadership"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Kimberley Grimes",
+        "title": "Licensed Clinical Social Worker",
+        "credentials": ["LCSW"],
+        "bio": "Kimberley Grimes is a dedicated licensed clinical social worker committed to providing compassionate care. She works to support individuals and families in navigating mental health challenges and building resilience.",
+        "image": null,
+        "specialties": ["Clinical Social Work", "Family Support", "Mental Health Services"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Dov Cohen",
+        "title": "Social Work Supervisee",
+        "credentials": ["MSW"],
+        "bio": "Dov Cohen is a master's level social work professional working under supervision. With a master's degree in social work, Dov is committed to supporting clients and building skills in clinical social work practice.",
+        "image": null,
+        "specialties": ["Social Work", "Client Support", "Clinical Practice"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Kelly Murphy",
+        "title": "Licensed Professional Counselor",
+        "credentials": ["LPC"],
+        "bio": "Kelly Murphy is a licensed professional counselor dedicated to providing compassionate, individualized counseling services. She works to support clients in achieving their mental health and wellness goals.",
+        "image": null,
+        "specialties": ["Professional Counseling", "Mental Health Support", "Individual Therapy"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Salima Jiwa",
+        "title": "Licensed Clinical Social Worker",
+        "credentials": ["LCSW"],
+        "bio": "Salima Jiwa is a compassionate licensed clinical social worker dedicated to supporting individuals on their mental health journey. She provides evidence-based clinical care with cultural sensitivity and respect.",
+        "image": null,
+        "specialties": ["Clinical Social Work", "Mental Health Services", "Community Support"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Rachel Cherian",
+        "title": "Licensed Clinical Social Worker",
+        "credentials": ["LCSW"],
+        "bio": "Rachel Cherian is a dedicated licensed clinical social worker committed to providing compassionate mental health services. She specializes in supporting clients' recovery and resilience through therapeutic care.",
+        "image": null,
+        "specialties": ["Clinical Social Work", "Individual Therapy", "Mental Health Support"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Keith K. Ewell",
+        "title": "Psychologist",
+        "credentials": ["Ph.D."],
+        "bio": "Dr. Keith K. Ewell brings doctoral-level expertise and extensive experience in psychological services. He is dedicated to providing evidence-based psychological assessment and intervention.",
+        "image": null,
+        "specialties": ["Psychological Services", "Assessment", "Research-Based Practice"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Erica Craig-Mann",
+        "title": "Registered Drama Therapist",
+        "credentials": ["Ph.D.", "LCSW", "RDT-BCT"],
+        "bio": "Dr. Erica Craig-Mann is a highly credentialed professional with a doctorate, clinical social work license, and board certification in drama therapy. She brings innovative therapeutic approaches integrating drama and creative interventions.",
+        "image": null,
+        "specialties": ["Drama Therapy", "Creative Therapy", "Clinical Social Work", "Trauma Treatment"],
+        "languages": ["English"]
+      },
+      {
+        "name": "Zara Ahmad",
+        "title": "Nationally Certified School Psychologist",
+        "credentials": ["M.A.", "NCSP"],
+        "bio": "Zara Ahmad is a nationally certified school psychologist with a master's degree. She brings expertise in school-based psychological services, assessment, and support for students' academic and emotional well-being.",
+        "image": null,
+        "specialties": ["School Psychology", "Educational Assessment", "Student Support", "Child Development"],
+        "languages": ["English"]
+      }
+    ]
+  },
+  "blogPage": {
+    "heading": "Resources & Articles",
+    "description": "Expert insights, practical tips, and valuable resources for mental health, recovery, and building stronger communities.",
+    "emptyState": "We don't have any articles yet, but new resources are coming soon."
+  }
+}

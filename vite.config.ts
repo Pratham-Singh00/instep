@@ -15,4 +15,18 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: mode === "wordpress"
+    ? "/wp-content/themes/instep-community-connect/assets/build/"
+    : "/",
+  build: {
+    outDir:
+      mode === "wordpress"
+        ? path.resolve(__dirname, "wordpress-theme/instep-community-connect/assets/build")
+        : path.resolve(__dirname, "dist"),
+    emptyOutDir: true,
+    manifest: true,
+    rollupOptions: {
+      input: path.resolve(__dirname, "index.html"),
+    },
+  },
 }));

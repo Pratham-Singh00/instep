@@ -1,0 +1,20 @@
+/*
+Theme Name: In Step Community Connect
+Theme URI: https://instepcommunityconnect.org
+Description: A modern, responsive WordPress theme for In Step Community Connect featuring a React-based single-page application design. This theme provides a comprehensive platform for community engagement, services showcase, and contact management.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 8.3
+Author: In Step Community Connect Team
+Author URI: https://instepcommunityconnect.org
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: instep-community-connect
+Tags: one-column, custom-colors, custom-menu, featured-images, full-width-template, threaded-comments, translation-ready, block-patterns, accessibility-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+/* Theme styles are loaded via enqueued stylesheet from the React build */

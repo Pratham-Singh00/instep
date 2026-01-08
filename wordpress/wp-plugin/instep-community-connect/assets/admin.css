@@ -1,0 +1,12 @@
+.instep-content-form textarea.code {
+  font-family: var(--monospace, Menlo, Consolas, monospace);
+  min-height: 420px;
+}
+
+.instep-content-form .form-table th {
+  width: 220px;
+}
+
+.instep-content-form .form-table .description {
+  margin-top: 4px;
+}

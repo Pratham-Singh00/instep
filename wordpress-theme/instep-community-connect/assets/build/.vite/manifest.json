@@ -1,0 +1,33 @@
+{
+  "index.html": {
+    "file": "assets/index-ssooIiHX.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "css": [
+      "assets/index-QyYVynyw.css"
+    ],
+    "assets": [
+      "assets/hero-image-0XVGYSw4.jpg",
+      "assets/individual-therapy-Cfalj4BQ.jpg",
+      "assets/group-therapy-C78tKrfl.jpg",
+      "assets/family-therapy-BY7XkmCP.jpg"
+    ]
+  },
+  "src/assets/family-therapy.jpg": {
+    "file": "assets/family-therapy-BY7XkmCP.jpg",
+    "src": "src/assets/family-therapy.jpg"
+  },
+  "src/assets/group-therapy.jpg": {
+    "file": "assets/group-therapy-C78tKrfl.jpg",
+    "src": "src/assets/group-therapy.jpg"
+  },
+  "src/assets/hero-image.jpg": {
+    "file": "assets/hero-image-0XVGYSw4.jpg",
+    "src": "src/assets/hero-image.jpg"
+  },
+  "src/assets/individual-therapy.jpg": {
+    "file": "assets/individual-therapy-Cfalj4BQ.jpg",
+    "src": "src/assets/individual-therapy.jpg"
+  }
+}
