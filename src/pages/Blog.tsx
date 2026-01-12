@@ -108,6 +108,32 @@ const Blog = () => {
       featured_image: "/api/placeholder/400/250",
       slug: "building-healthy-parenting-skills",
       views: 412
+    },
+    {
+      id: 5,
+      title: "Why Group Therapy Works for Teens and Adults",
+      excerpt: "Group therapy can often be more effective than individual therapy. Discover how sharing struggles in a guided environment fosters connection and growth.",
+      content: "",
+      author: "Cathi Cohen, LCSW, CGP",
+      date: "2024-01-15",
+      categories: ["Group Therapy", "Teens"],
+      tags: ["group therapy", "social skills", "connection"],
+      featured_image: "/api/placeholder/400/250",
+      slug: "why-group-therapy-works",
+      views: 512
+    },
+    {
+      id: 6,
+      title: "Navigating Social Anxiety in a Digital World",
+      excerpt: "As interactions move online, social anxiety can manifest in new ways. Learn strategies to build confidence both online and offline.",
+      content: "",
+      author: "Keith K. Ewell, Ph.D.",
+      date: "2024-01-22",
+      categories: ["Anxiety", "Social Skills"],
+      tags: ["anxiety", "digital world", "teens"],
+      featured_image: "/api/placeholder/400/250",
+      slug: "social-anxiety-digital-world",
+      views: 430
     }
   ];
 
