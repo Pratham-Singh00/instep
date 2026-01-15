@@ -127,7 +127,7 @@ export const teamMembers: TeamMember[] = [
     image: zaraAhmadImg,
     bio: "Zara’s compassion and heart shines through as she guides teens and kids through life’s challenges. With a gift for connecting with children and teens on a personal level, Zara creates a safe space for her clients to grow and change. As a Nationally Certified School Psychologist with a wide range of experience, Zara is able to meet children, teens, and parents where they are so they feel heard and understood. She especially enjoys working with folks on the spectrum. In addition to offering counseling services, Zara is a seasoned Loudoun County school psychologist where she provides psychological assessments to students, on-going consultation with teachers/families, and support in determining and implementing special education eligibility, 504, IEP plans, and crisis response interventions.\n\nZara earned her bachelor’s degree in Psychology and master’s degree in School Psychology from George Mason University. She also obtained her Certificate of Advanced Graduate Study from George Mason University.",
     email: "zara@insteppc.com"
-  }
+  },
   {
     id: "jennifer-case",
     name: "Jennifer Case",
