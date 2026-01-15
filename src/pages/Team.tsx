@@ -24,30 +24,39 @@ const Team = () => {
         </section>
 
         <section className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-6">
             {teamMembers.map((member) => (
               <div 
                 key={member.id}
-                className="flex flex-col items-center text-center cursor-pointer group"
+                className="flex flex-col items-center p-4 border border-gray-300 rounded-lg bg-white transition-all duration-300 hover:shadow-lg hover:border-primary/50 group cursor-pointer"
                 onClick={() => navigate(`/team/${member.id}`)}
               >
-                <div className="relative mb-4 w-40 h-40 transition-transform duration-300 group-hover:scale-105">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-transparent group-hover:border-primary/20 transition-all duration-300">
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                <div className="relative mb-4 w-32 h-32 md:w-36 md:h-36 transition-transform duration-300 group-hover:scale-105 overflow-hidden rounded-lg shadow-md group-hover:shadow-lg flex-shrink-0">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
                 </div>
                 
-                <h3 className="font-semibold text-lg text-foreground mb-1 group-hover:text-primary transition-colors">
+                <h3 className="font-semibold text-sm md:text-base text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2 w-full px-1">
                   {member.name}
                 </h3>
                 
-                <span className="text-sm font-medium text-blue-600">
+                <span className="text-xs font-medium text-blue-600 mb-3 line-clamp-2 w-full px-1">
                   {member.qualification}
                 </span>
+                
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = `mailto:${member.email}`;
+                  }}
+                  className="mt-auto px-3 py-1.5 bg-primary text-white text-xs font-medium rounded-md hover:bg-primary/90 transition-colors w-full"
+                >
+                  Email
+                </button>
               </div>
             ))}
           </div>

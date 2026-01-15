@@ -40,7 +40,43 @@ class Instep_Theme
     public function on_theme_activation(): void
     {
         $this->register_cpts();
+        $this->populate_team_members();
         flush_rewrite_rules();
+    }
+
+    /**
+     * Populate team members from default content on theme activation
+     */
+    public function populate_team_members(): void
+    {
+        $default_content = $this->get_default_content();
+        
+        if (empty($default_content['team']['members'])) {
+            return;
+        }
+
+        // Check if team members already exist
+        $existing = get_posts(['post_type' => 'team_member', 'numberposts' => 1]);
+        if (!empty($existing)) {
+            return; // Don't overwrite existing team members
+        }
+
+        foreach ($default_content['team']['members'] as $member) {
+            $post_id = wp_insert_post([
+                'post_type' => 'team_member',
+                'post_title' => $member['name'] ?? 'Team Member',
+                'post_content' => $member['bio'] ?? '',
+                'post_status' => 'publish',
+            ]);
+
+            if (!is_wp_error($post_id)) {
+                update_post_meta($post_id, '_team_title', $member['title'] ?? '');
+                update_post_meta($post_id, '_team_credentials', implode(', ', $member['credentials'] ?? []));
+                update_post_meta($post_id, '_team_specialties', implode(', ', $member['specialties'] ?? []));
+                update_post_meta($post_id, '_team_email', $member['email'] ?? '');
+                update_post_meta($post_id, '_team_phone', $member['phone'] ?? '');
+            }
+        }
     }
 
     /**
@@ -256,7 +292,45 @@ class Instep_Theme
 
     public function rest_get_content(\WP_REST_Request $request): \WP_REST_Response
     {
-        return rest_ensure_response($this->get_default_content());
+        $content = $this->get_default_content();
+        
+        // Fetch team members from database and override default content
+        $team_members = $this->get_team_members_from_db();
+        if (!empty($team_members)) {
+            $content['team']['members'] = $team_members;
+        }
+        
+        return rest_ensure_response($content);
+    }
+
+    /**
+     * Fetch team members from WordPress database
+     */
+    private function get_team_members_from_db(): array
+    {
+        $posts = get_posts([
+            'post_type' => 'team_member',
+            'numberposts' => -1,
+            'orderby' => 'menu_order',
+            'order' => 'ASC',
+        ]);
+
+        $members = [];
+        foreach ($posts as $post) {
+            $members[] = [
+                'name' => $post->post_title,
+                'title' => get_post_meta($post->ID, '_team_title', true),
+                'credentials' => array_filter(array_map('trim', explode(',', get_post_meta($post->ID, '_team_credentials', true)))),
+                'bio' => $post->post_content,
+                'specialties' => array_filter(array_map('trim', explode(',', get_post_meta($post->ID, '_team_specialties', true)))),
+                'email' => get_post_meta($post->ID, '_team_email', true),
+                'phone' => get_post_meta($post->ID, '_team_phone', true),
+                'image' => null, // Can be added later if needed
+                'languages' => ['English'],
+            ];
+        }
+
+        return $members;
     }
 
     public function rest_create_contact_request(\WP_REST_Request $request): \WP_REST_Response
