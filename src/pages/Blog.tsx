@@ -42,88 +42,6 @@ export const toPlainText = (value: string) =>
     .replace(/\s+/g, " ")
     .trim();
 
-// Fallback articles when WordPress is not connected
-export const samplePosts: BlogPost[] = [
-  {
-    id: 1,
-    title: "Understanding DBT: A Guide to Dialectical Behavior Therapy",
-    excerpt: "Learn about DBT skills and how they can help manage emotions, improve relationships, and build a life worth living.",
-    content: "",
-    author: "Dr. Sarah Johnson",
-    date: "2024-03-15",
-    categories: ["Therapy", "DBT"],
-    tags: ["mental health", "coping skills", "therapy"],
-    featured_image: "/api/placeholder/400/250",
-    slug: "understanding-dbt-guide",
-    views: 324
-  },
-  {
-    id: 2,
-    title: "Supporting a Loved One Through Reentry",
-    excerpt: "Practical tips for families and friends supporting someone transitioning back to community life after incarceration.",
-    content: "",
-    author: "Michael Rodriguez, LCSW",
-    date: "2024-03-10",
-    categories: ["Reentry Support", "Family"],
-    tags: ["reentry", "family support", "community"],
-    featured_image: "/api/placeholder/400/250",
-    slug: "supporting-loved-one-reentry",
-    views: 256
-  },
-  {
-    id: 3,
-    title: "Breaking the Cycle: Domestic Violence Recovery",
-    excerpt: "Understanding the path to healing and rebuilding life after experiencing domestic violence.",
-    content: "",
-    author: "Jennifer Martinez, LPC",
-    date: "2024-03-05",
-    categories: ["Domestic Violence", "Recovery"],
-    tags: ["domestic violence", "recovery", "healing"],
-    featured_image: "/api/placeholder/400/250",
-    slug: "breaking-cycle-domestic-violence-recovery",
-    views: 189
-  },
-  {
-    id: 4,
-    title: "Building Healthy Parenting Skills",
-    excerpt: "Evidence-based strategies for effective parenting and creating positive family dynamics.",
-    content: "",
-    author: "Dr. Lisa Chen",
-    date: "2024-02-28",
-    categories: ["Parenting", "Family"],
-    tags: ["parenting", "family therapy", "children"],
-    featured_image: "/api/placeholder/400/250",
-    slug: "building-healthy-parenting-skills",
-    views: 412
-  },
-  {
-    id: 5,
-    title: "Why Group Therapy Works for Teens and Adults",
-    excerpt: "Group therapy can often be more effective than individual therapy. Discover how sharing struggles in a guided environment fosters connection and growth.",
-    content: "",
-    author: "Cathi Cohen, LCSW, CGP",
-    date: "2024-01-15",
-    categories: ["Group Therapy", "Teens"],
-    tags: ["group therapy", "social skills", "connection"],
-    featured_image: "/api/placeholder/400/250",
-    slug: "why-group-therapy-works",
-    views: 512
-  },
-  {
-    id: 6,
-    title: "Navigating Social Anxiety in a Digital World",
-    excerpt: "As interactions move online, social anxiety can manifest in new ways. Learn strategies to build confidence both online and offline.",
-    content: "",
-    author: "Keith K. Ewell, Ph.D.",
-    date: "2024-01-22",
-    categories: ["Anxiety", "Social Skills"],
-    tags: ["anxiety", "digital world", "teens"],
-    featured_image: "/api/placeholder/400/250",
-    slug: "social-anxiety-digital-world",
-    views: 430
-  }
-];
-
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -187,10 +105,10 @@ const Blog = () => {
           } satisfies BlogPost;
         });
 
-        setPosts(mappedPosts.length ? mappedPosts : samplePosts);
+        setPosts(mappedPosts);
       } catch (err) {
         console.error("Unable to load WordPress posts", err);
-        setPosts(samplePosts);
+        setPosts([]);
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
         setLoading(false);
@@ -217,16 +135,14 @@ const Blog = () => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       plainExcerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "all" || post.categories.includes(selectedCategory);
-
-    return matchesSearch && matchesCategory;
-  });
+  const wpBridge = typeof window !== "undefined" ? window.instepCommunityConnect : undefined;
 
   useEffect(() => {
-    if (!derivedCategories.includes(selectedCategory)) {
-      setSelectedCategory("all");
-    }
-  }, [derivedCategories, selectedCategory]);
+    const fetchPosts = async () => {
+      setLoading(true);
+      setError(null);
+      if (!wpBridge?.endpoints?.posts) {
+        setPosts([]ectedCategory]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -360,17 +276,10 @@ const Blog = () => {
                         </div>
                         
                         <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80" asChild>
-                          {post.link ? (
-                            <a href={post.link} target="_blank" rel="noopener noreferrer">
-                              Read More
-                              <ArrowRight className="ml-1 h-3 w-3" />
-                            </a>
-                          ) : (
-                            <SmartLink href={`/blog/${post.slug}`}>
-                              Read More
-                              <ArrowRight className="ml-1 h-3 w-3" />
-                            </SmartLink>
-                          )}
+                          <SmartLink href={`/blog/${post.slug}`}>
+                            Read More
+                            <ArrowRight className="ml-1 h-3 w-3" />
+                          </SmartLink>
                         </Button>
                       </div>
                       

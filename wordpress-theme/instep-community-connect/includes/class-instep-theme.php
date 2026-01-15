@@ -237,6 +237,11 @@ class Instep_Theme
             'restBase' => esc_url_raw(rest_url()),
             'siteUrl' => esc_url_raw(home_url('/')),
             'themeUrl' => esc_url_raw(INSTEP_THEME_URI),
+            'endpoints' => [
+                'content' => esc_url_raw(rest_url('instep/v1/content')),
+                'posts' => esc_url_raw(rest_url('wp/v2/posts')),
+                'contactRequest' => esc_url_raw(rest_url('instep/v1/contact-request')),
+            ],
         ];
 
         wp_add_inline_script($handle, 'window.instepCommunityConnect = ' . wp_json_encode($bridge) . ';', 'before');

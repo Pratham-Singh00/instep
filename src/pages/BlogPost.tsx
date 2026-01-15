@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { BlogPost as BlogPostType, samplePosts, toPlainText } from "./Blog";
+import { BlogPost as BlogPostType, toPlainText } from "./Blog";
 import { Calendar, User, Clock, ArrowLeft, Tag as TagIcon, ExternalLink } from "lucide-react";
 
 const BlogPost = () => {
@@ -16,8 +16,6 @@ const BlogPost = () => {
 
   const wpBridge = typeof window !== "undefined" ? window.instepCommunityConnect : undefined;
 
-  const fallbackPost = useMemo(() => samplePosts.find((p) => p.slug === slug) ?? null, [slug]);
-
   useEffect(() => {
     if (!slug) return;
 
@@ -26,7 +24,8 @@ const BlogPost = () => {
       setError(null);
 
       if (!wpBridge?.endpoints?.posts) {
-        setPost(fallbackPost);
+        setPost(null);
+        setError("WordPress connection not available");
         setLoading(false);
         return;
       }
@@ -41,7 +40,7 @@ const BlogPost = () => {
         const raw = Array.isArray(data) && data.length ? data[0] : null;
         if (!raw) {
           setError("Post not found");
-          setPost(fallbackPost);
+          setPost(null);
           return;
         }
 
@@ -76,14 +75,14 @@ const BlogPost = () => {
       } catch (err) {
         console.error("Unable to load WordPress post", err);
         setError(err instanceof Error ? err.message : "Unknown error");
-        setPost(fallbackPost);
+        setPost(null);
       } finally {
         setLoading(false);
       }
     };
 
     void loadPost();
-  }, [fallbackPost, slug, wpBridge?.endpoints?.posts]);
+  }, [slug, wpBridge?.endpoints?.posts]);
 
   const formatDate = (dateString: string) =>
     new Date(dateString).toLocaleDateString("en-US", {
