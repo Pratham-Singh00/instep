@@ -19,7 +19,7 @@ import Footer from "@/components/Footer";
 import { useContent } from "@/context/ContentContext";
 
 // WordPress API integration structure (to be connected to actual WordPress API)
-interface BlogPost {
+export interface BlogPost {
   id: number;
   title: string;
   excerpt: string;
@@ -35,7 +35,7 @@ interface BlogPost {
   views?: number;
 }
 
-const toPlainText = (value: string) =>
+export const toPlainText = (value: string) =>
   value
     .replace(/<[^>]+>/g, " ")
     .replace(/&nbsp;/g, " ")
