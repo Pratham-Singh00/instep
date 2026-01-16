@@ -18,7 +18,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useContent } from "@/context/ContentContext";
 
-// FIXED: Added 'export' so BlogPost.tsx can import this type
+// FIXED: Added 'export' so other files can use this interface
 export interface BlogPost {
   id: number;
   title: string;
@@ -35,7 +35,7 @@ export interface BlogPost {
   views?: number;
 }
 
-// FIXED: Added 'export' so BlogPost.tsx can import this function
+// FIXED: Added 'export' so other files can use this function
 export const toPlainText = (value: string) =>
   value
     .replace(/<[^>]+>/g, " ")
