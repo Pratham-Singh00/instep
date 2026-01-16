@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { SmartLink } from "@/components/SmartLink";
@@ -18,7 +18,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useContent } from "@/context/ContentContext";
 
-// WordPress API integration structure (to be connected to actual WordPress API)
+// Exporting the interface so BlogPost.tsx can use it
 export interface BlogPost {
   id: number;
   title: string;
@@ -35,6 +35,7 @@ export interface BlogPost {
   views?: number;
 }
 
+// Exporting this function is required to fix the build error
 export const toPlainText = (value: string) =>
   value
     .replace(/<[^>]+>/g, " ")
@@ -268,8 +269,8 @@ const Blog = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[1, 2, 3].map(i => (
                   <Card key={i} className="card-elevated animate-pulse">
-                    <div className="h-48 bg-muted rounded-t-lg"></div>
                     <CardContent className="p-6">
+                      <div className="h-48 bg-muted rounded-t-lg mb-4"></div>
                       <div className="h-4 bg-muted rounded mb-2"></div>
                       <div className="h-4 bg-muted rounded w-3/4 mb-4"></div>
                       <div className="h-3 bg-muted rounded mb-2"></div>
@@ -333,6 +334,7 @@ const Blog = () => {
                         </div>
                         
                         <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80" asChild>
+                          {/* Force using SmartLink internal routing to fix navigation issues */}
                           <SmartLink href={`/blog/${post.slug}`}>
                             Read More
                             <ArrowRight className="ml-1 h-3 w-3" />
