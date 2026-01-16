@@ -18,7 +18,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useContent } from "@/context/ContentContext";
 
-// Exporting the interface so BlogPost.tsx can use it
+// FIXED: Added 'export' so BlogPost.tsx can import this type
 export interface BlogPost {
   id: number;
   title: string;
@@ -35,7 +35,7 @@ export interface BlogPost {
   views?: number;
 }
 
-// Exporting this function is required to fix the build error
+// FIXED: Added 'export' so BlogPost.tsx can import this function
 export const toPlainText = (value: string) =>
   value
     .replace(/<[^>]+>/g, " ")
@@ -334,7 +334,6 @@ const Blog = () => {
                         </div>
                         
                         <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80" asChild>
-                          {/* Force using SmartLink internal routing to fix navigation issues */}
                           <SmartLink href={`/blog/${post.slug}`}>
                             Read More
                             <ArrowRight className="ml-1 h-3 w-3" />
