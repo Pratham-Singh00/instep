@@ -112,6 +112,24 @@ class Instep_Theme
             'register_meta_box_cb' => [$this, 'add_team_meta_boxes'],
         ]);
 
+        // Add meta box for standard Posts
+        add_action('add_meta_boxes_post', [$this, 'add_post_meta_boxes']);
+        add_action('save_post_post', [$this, 'save_post_meta']);
+        
+        // Expose custom author to REST API
+        add_action('rest_api_init', function() {
+            register_rest_field('post', 'custom_author_name', [
+                'get_callback' => function($object) {
+                    return get_post_meta($object['id'], '_instep_custom_author', true);
+                },
+                'schema' => [
+                    'description' => 'Custom author name override',
+                    'type' => 'string',
+                    'context' => ['view', 'edit'],
+                ],
+            ]);
+        });
+
         // Contact Requests CPT
         register_post_type('contact_request', [
             'labels' => [
@@ -196,11 +214,89 @@ class Instep_Theme
     public function add_contact_meta_boxes($post): void
     {
         add_meta_box('contact_info', __('Contact Details', 'instep-community-connect'), function($post) {
-            echo '<strong>' . esc_html__('Email:', 'instep-community-connect') . '</strong> ' . esc_html(get_post_meta($post->ID, '_contact_email', true)) . '<br/><br/>';
-            echo '<strong>' . esc_html__('Phone:', 'instep-community-connect') . '</strong> ' . esc_html(get_post_meta($post->ID, '_contact_phone', true)) . '<br/><br/>';
-            echo '<strong>' . esc_html__('Service:', 'instep-community-connect') . '</strong> ' . esc_html(get_post_meta($post->ID, '_contact_service', true)) . '<br/><br/>';
-            echo '<strong>' . esc_html__('Urgency:', 'instep-community-connect') . '</strong> ' . esc_html(get_post_meta($post->ID, '_contact_urgency', true)) . '<br/>';
-        }, 'contact_request', 'side');
+            echo '<div style="background: #f9f9f9; padding: 15px; border: 1px solid #e5e5e5;">';
+            
+            // Submitter Info
+            echo '<h4 style="margin: 0 0 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Submitter Information</h4>';
+            echo '<p><strong>' . esc_html__('Email:', 'instep-community-connect') . '</strong> <a href="mailto:' . esc_attr(get_post_meta($post->ID, '_contact_email', true)) . '">' . esc_html(get_post_meta($post->ID, '_contact_email', true)) . '</a></p>';
+            echo '<p><strong>' . esc_html__('Phone:', 'instep-community-connect') . '</strong> ' . esc_html(get_post_meta($post->ID, '_contact_phone', true)) . '</p>';
+
+            // Client Info
+            $client_name = get_post_meta($post->ID, '_contact_client_name', true);
+            if ($client_name) {
+                echo '<div style="margin-top: 20px;">';
+                echo '<h4 style="margin: 0 0 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Client Information</h4>';
+                echo '<p><strong>' . esc_html__('Client Name:', 'instep-community-connect') . '</strong> ' . esc_html($client_name) . '</p>';
+                echo '<p><strong>' . esc_html__('Age:', 'instep-community-connect') . '</strong> ' . esc_html(get_post_meta($post->ID, '_contact_client_age', true)) . '</p>';
+                echo '<p><strong>' . esc_html__('Grade:', 'instep-community-connect') . '</strong> ' . esc_html(get_post_meta($post->ID, '_contact_client_grade', true)) . '</p>';
+                echo '<p><strong>' . esc_html__('School:', 'instep-community-connect') . '</strong> ' . esc_html(get_post_meta($post->ID, '_contact_client_school', true)) . '</p>';
+                echo '</div>';
+            }
+
+            // Inquiry Details
+            echo '<div style="margin-top: 20px;">';
+            echo '<h4 style="margin: 0 0 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Inquiry Details</h4>';
+            
+            $reasons = get_post_meta($post->ID, '_contact_inquiry_reasons', true);
+            if (!empty($reasons)) {
+                 // It might be stored as an array or JSON, handle both
+                $reasons_list = is_string($reasons) ? $reasons : implode(', ', (array)$reasons);
+                echo '<p><strong>' . esc_html__('Reasons:', 'instep-community-connect') . '</strong> ' . esc_html($reasons_list) . '</p>';
+            }
+
+            echo '<p><strong>' . esc_html__('Referral Source:', 'instep-community-connect') . '</strong> ' . esc_html(get_post_meta($post->ID, '_contact_referral_source', true)) . '</p>';
+            
+            // Legacy/Fallback
+            $service = get_post_meta($post->ID, '_contact_service', true);
+            if ($service) {
+                echo '<p><strong>' . esc_html__('Service Interest (Legacy):', 'instep-community-connect') . '</strong> ' . esc_html($service) . '</p>';
+            }
+            
+            echo '<p><strong>' . esc_html__('Urgency:', 'instep-community-connect') . '</strong> <span style="background: #e5e5e5; padding: 2px 6px; border-radius: 3px;">' . esc_html(get_post_meta($post->ID, '_contact_urgency', true)) . '</span></p>';
+            echo '</div>';
+
+            echo '</div>';
+        }, 'contact_request', 'normal');
+    }
+
+    /**
+     * Add meta boxes for standard posts
+     */
+    public function add_post_meta_boxes($post): void
+    {
+        add_meta_box('instep_post_options', __('In Step Post Options', 'instep-community-connect'), function($post) {
+            $custom_author = get_post_meta($post->ID, '_instep_custom_author', true);
+            wp_nonce_field('instep_post_nonce', 'instep_post_nonce_field');
+            ?>
+            <div style="margin-bottom: 15px;">
+                <label for="instep_custom_author"><strong><?php esc_html_e('Custom Author Name:', 'instep-community-connect'); ?></strong></label><br/>
+                <p class="description"><?php esc_html_e('Leave blank to use the WordPress user name.', 'instep-community-connect'); ?></p>
+                <input type="text" id="instep_custom_author" name="instep_custom_author" value="<?php echo esc_attr($custom_author); ?>" style="width: 100%;" />
+            </div>
+            <?php
+        }, 'post', 'side', 'high');
+    }
+
+    /**
+     * Save post meta
+     */
+    public function save_post_meta($post_id): void
+    {
+        if (!isset($_POST['instep_post_nonce_field']) || !wp_verify_nonce($_POST['instep_post_nonce_field'], 'instep_post_nonce')) {
+            return;
+        }
+
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return;
+        }
+
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
+        if (isset($_POST['instep_custom_author'])) {
+            update_post_meta($post_id, '_instep_custom_author', sanitize_text_field($_POST['instep_custom_author']));
+        }
     }
 
     /* ======================== React App ======================== */
@@ -341,20 +437,37 @@ class Instep_Theme
     public function rest_create_contact_request(\WP_REST_Request $request): \WP_REST_Response
     {
         $params = $request->get_json_params();
-        $name = sanitize_text_field($params['name'] ?? '');
+        
+        // Basic Info
+        $first_name = sanitize_text_field($params['firstName'] ?? '');
+        $last_name = sanitize_text_field($params['lastName'] ?? '');
         $email = sanitize_email($params['email'] ?? '');
         $phone = sanitize_text_field($params['phone'] ?? '');
-        $service = sanitize_text_field($params['service'] ?? '');
-        $urgency = sanitize_text_field($params['urgency'] ?? '');
+        
+        // Client Info
+        $client_name = sanitize_text_field($params['clientName'] ?? '');
+        $client_age = sanitize_text_field($params['clientAge'] ?? '');
+        $client_grade = sanitize_text_field($params['clientGrade'] ?? '');
+        $client_school = sanitize_text_field($params['clientSchool'] ?? '');
+        
+        // Context
+        $referral_source = sanitize_text_field($params['referralSource'] ?? '');
+        $inquiry_reasons = isset($params['inquiryReasons']) ? array_map('sanitize_text_field', (array)$params['inquiryReasons']) : [];
         $message = wp_kses_post($params['message'] ?? '');
+        
+        // Legacy/Fallback Fields
+        $urgency = sanitize_text_field($params['urgency'] ?? '');
+        $service = sanitize_text_field($params['service'] ?? '');
 
-        if (!$name || !$email || !$message) {
+        if (!$first_name || !$email || !$message) {
             return new \WP_REST_Response(['error' => 'Missing required fields'], 400);
         }
 
+        $full_name = trim($first_name . ' ' . $last_name);
+
         $post_id = wp_insert_post([
             'post_type' => 'contact_request',
-            'post_title' => $name . ' (' . $email . ')',
+            'post_title' => $full_name . ' (' . $email . ')',
             'post_content' => $message,
             'post_status' => 'publish',
         ]);
@@ -363,10 +476,21 @@ class Instep_Theme
             return new \WP_REST_Response(['error' => 'Failed to save'], 500);
         }
 
+        // Save Meta
         update_post_meta($post_id, '_contact_email', $email);
         update_post_meta($post_id, '_contact_phone', $phone);
-        update_post_meta($post_id, '_contact_service', $service);
+        
+        update_post_meta($post_id, '_contact_client_name', $client_name);
+        update_post_meta($post_id, '_contact_client_age', $client_age);
+        update_post_meta($post_id, '_contact_client_grade', $client_grade);
+        update_post_meta($post_id, '_contact_client_school', $client_school);
+        
+        update_post_meta($post_id, '_contact_referral_source', $referral_source);
+        update_post_meta($post_id, '_contact_inquiry_reasons', $inquiry_reasons);
+        
+        // Legacy
         update_post_meta($post_id, '_contact_urgency', $urgency);
+        update_post_meta($post_id, '_contact_service', $service);
 
         return rest_ensure_response(['success' => true, 'id' => $post_id]);
     }

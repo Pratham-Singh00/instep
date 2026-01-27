@@ -24,7 +24,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('INSTEP_THEME_VERSION', '1.0.0');
+define('INSTEP_THEME_VERSION', '1.28.1');
 define('INSTEP_THEME_DIR', get_template_directory());
 define('INSTEP_THEME_URI', get_template_directory_uri());
 

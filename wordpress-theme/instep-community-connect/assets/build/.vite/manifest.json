@@ -1,11 +1,11 @@
 {
   "index.html": {
-    "file": "assets/index-CQyYnIcS.js",
+    "file": "assets/index-DvTXAQuM.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "css": [
-      "assets/index-D5f9B-14.css"
+      "assets/index-CiC9Bn-w.css"
     ],
     "assets": [
       "assets/hero-image-0XVGYSw4.jpg",
@@ -19,9 +19,11 @@
       "assets/EricaCraig-Mann-pvYe9Fwi.jpg",
       "assets/ErikaCarlson-nWIBiyaH.jpg",
       "assets/JamesSebben-QfGcx2BN.jpg",
+      "assets/JenniferCase-Cb16CgqN.jpg",
       "assets/KeithEwell-CLgcH-RF.jpg",
       "assets/KellyMurphy-DCaIF4sq.jpg",
       "assets/KimberlyGrimes-Bg3ZvMcg.jpg",
+      "assets/MaryShuffleton-CJY1QSCY.jpg",
       "assets/RachelCherian-CS_YQ6JO.jpg",
       "assets/SalimaJiwa-B3wNGw1O.jpg",
       "assets/ZaraAhmad-fEgAYS4L.jpg"
@@ -55,6 +57,10 @@
     "file": "assets/JamesSebben-QfGcx2BN.jpg",
     "src": "src/assets/JamesSebben.jpg"
   },
+  "src/assets/JenniferCase.jpg": {
+    "file": "assets/JenniferCase-Cb16CgqN.jpg",
+    "src": "src/assets/JenniferCase.jpg"
+  },
   "src/assets/KeithEwell.jpg": {
     "file": "assets/KeithEwell-CLgcH-RF.jpg",
     "src": "src/assets/KeithEwell.jpg"
@@ -66,6 +72,10 @@
   "src/assets/KimberlyGrimes.jpg": {
     "file": "assets/KimberlyGrimes-Bg3ZvMcg.jpg",
     "src": "src/assets/KimberlyGrimes.jpg"
+  },
+  "src/assets/MaryShuffleton.jpg": {
+    "file": "assets/MaryShuffleton-CJY1QSCY.jpg",
+    "src": "src/assets/MaryShuffleton.jpg"
   },
   "src/assets/RachelCherian.jpg": {
     "file": "assets/RachelCherian-CS_YQ6JO.jpg",
