@@ -22,8 +22,8 @@ const Testimonials = () => {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {testimonials.items.map((testimonial, index) => (
-            <Card key={index} className="card-elevated p-6 relative">
-              <CardContent className="p-0">
+            <Card key={index} className="card-elevated p-6 relative h-full flex flex-col">
+              <CardContent className="p-0 flex flex-col flex-1">
                 {/* Quote Icon */}
                 <div className="absolute -top-3 -left-3">
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
@@ -39,12 +39,12 @@ const Testimonials = () => {
                 </div>
 
                 {/* Testimonial Content */}
-                <blockquote className="text-muted-foreground mb-6 leading-relaxed italic">
+                <blockquote className="text-muted-foreground mb-6 leading-relaxed italic flex-grow">
                   "{testimonial.content}"
                 </blockquote>
 
                 {/* Author Info */}
-                <div className="border-t border-border pt-4">
+                <div className="border-t border-border pt-4 mt-auto">
                   <div className="font-semibold text-foreground mb-1">
                     {testimonial.name}
                   </div>

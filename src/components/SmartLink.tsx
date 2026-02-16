@@ -1,4 +1,5 @@
 import { type AnchorHTMLAttributes, type MouseEvent } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 interface SmartLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string;
@@ -9,85 +10,77 @@ interface SmartLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
  * Converts internal routes to hash routes automatically
  */
 export const SmartLink = ({ href = "#", onClick, children, ...props }: SmartLinkProps) => {
-  // Check if we're in WordPress environment
-  const isWordPress = typeof window !== "undefined" && window.instepCommunityConnect;
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    // Call original onClick if provided
     if (onClick) {
       onClick(e);
     }
 
-    // External links or special protocols - let browser handle normally
-    if (
-      href.startsWith("http://") ||
-      href.startsWith("https://") ||
-      href.startsWith("mailto:") ||
-      href.startsWith("tel:")
-    ) {
-      return;
-    }
-
-    // For section anchors (#about, #services, etc.)
-    if (href.startsWith("#") && !href.includes("/")) {
+    // Handle hash links (anchors) -> Scroll to section
+    if (href.startsWith("#") && href.length > 1) {
       e.preventDefault();
       const sectionId = href.substring(1);
-      
-      // Get current route
-      const currentPath = isWordPress 
-        ? window.location.hash.replace(/^#/, '').split('?')[0]
-        : window.location.pathname;
-      
-      // If not on home page, navigate home first, then scroll
-      if (currentPath !== "/" && currentPath !== "") {
-        if (isWordPress) {
-          window.location.hash = "/";
-        } else {
-          window.location.href = "/";
+
+      const scrollToSection = () => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          // Add offset for fixed header
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
         }
-        // Wait for navigation, then scroll
-        setTimeout(() => {
-          if (sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-              element.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-          } else {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }
-        }, 100);
+      };
+
+      if (location.pathname !== "/") {
+        // Navigate to home first
+        navigate("/");
+        // Wait for navigation and render
+        setTimeout(scrollToSection, 300);
       } else {
-        // Already on home page, just scroll
-        if (sectionId) {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
+        // Already on home, just scroll
+        scrollToSection();
       }
       return;
     }
 
-    // In WordPress, convert /routes to #/routes
-    if (isWordPress && href.startsWith("/") && !href.startsWith("/#/")) {
-      e.preventDefault();
-      window.location.hash = href;
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    // External links, special protocols, or empty hash
+    if (
+      href.startsWith("http") ||
+      href.startsWith("mailto:") ||
+      href.startsWith("tel:") ||
+      href === "#"
+    ) {
       return;
     }
+
+    // Internal links handled by Link component naturally
   };
 
-  // Convert href for WordPress
-  let finalHref = href;
-  if (isWordPress && href.startsWith("/") && !href.startsWith("/#/") && !href.startsWith("#")) {
-    finalHref = `#${href}`;
+  if (
+    href.startsWith("http") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href === "#"
+  ) {
+    return (
+      <a href={href} onClick={handleClick} {...props}>
+        {children}
+      </a>
+    );
   }
 
+  // Use standard Link for everything else
+  // If it's a hash link, we still use Link but intercept with onClick
   return (
-    <a href={finalHref} onClick={handleClick} {...props}>
+    <Link to={href} onClick={handleClick} {...props as any}>
       {children}
-    </a>
+    </Link>
   );
 };

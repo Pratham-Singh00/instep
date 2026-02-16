@@ -1,4 +1,5 @@
 import rawContent from "../../content-defaults.json" assert { type: "json" };
+// Force new build hash v12
 import heroImage from "@/assets/hero-image.jpg";
 import individualImage from "@/assets/individual-therapy.jpg";
 import groupImage from "@/assets/group-therapy.jpg";

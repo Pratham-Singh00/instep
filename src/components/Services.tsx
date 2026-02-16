@@ -6,18 +6,29 @@ import { SmartLink } from "@/components/SmartLink";
 import individualImage from "@/assets/individual-therapy.jpg";
 import groupImage from "@/assets/group-therapy.jpg";
 import familyImage from "@/assets/family-therapy.jpg";
+import psychologicalTestingImage from "@/assets/psych-test-extreme.png";
 
 const Services = () => {
   const {
     content: { services },
   } = useContent();
 
-  const getServiceImage = (provided?: string | null, index?: number) => {
-    if (provided) return provided;
+  const getServiceImage = (service: any, index: number) => {
+    // DEBUG LOGGING
+    if (service.title === "Psychological Testing") {
+      console.log("DEBUG: Psychological Testing Service Object:", service);
+      console.log("DEBUG: Index:", index);
+    }
+
+    // ABSOLUTE OVERRIDE - PRIORITY 1
+    if (index === 3) return psychologicalTestingImage;
+    if (service.title === "Psychological Testing") return psychologicalTestingImage;
+
+    if (service.image) return service.image;
     if (index === 0) return individualImage;
     if (index === 1) return groupImage;
     if (index === 2) return familyImage;
-    return individualImage;
+    return psychologicalTestingImage;
   };
 
   return (
@@ -36,7 +47,7 @@ const Services = () => {
           {services.items.map((service, index) => {
             const Icon = getIconByName(service.icon);
             const isReversed = index % 2 === 1;
-            
+
             return (
               <div
                 key={service.title}
@@ -46,7 +57,7 @@ const Services = () => {
                 <div className="w-full lg:w-1/2">
                   <div className="relative rounded-xl overflow-hidden aspect-[4/3]">
                     <img
-                      src={getServiceImage(service.image, index)}
+                      src={getServiceImage(service, index)}
                       alt={service.alt || service.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
@@ -59,15 +70,15 @@ const Services = () => {
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-6">
                     {Icon ? <Icon className="h-8 w-8 text-primary" /> : null}
                   </div>
-                  
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground pb-1 leading-relaxed">
                     {service.title}
                   </h3>
-                  
+
                   <p className="text-muted-foreground mb-6 leading-relaxed">
                     {service.description}
                   </p>
-                  
+
                   {service.cta ? (
                     <Button className="btn-hero group" asChild>
                       <SmartLink href={service.cta.url || "#"}>

@@ -13,7 +13,7 @@ const Hero = () => {
   const backgroundImage = hero.backgroundImage || heroImageFallback;
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -21,21 +21,16 @@ const Hero = () => {
           alt="Diverse group of people walking together on a wooden bridge through nature, symbolizing community support and healing journey"
           className="w-full h-full object-cover"
         />
-        <div 
+        <div
           className="absolute inset-0"
           style={{ background: "var(--gradient-hero)" }}
         />
       </div>
 
-      {/* Announcement Banner */}
-      <div className="absolute top-20 left-0 right-0 z-20 bg-accent/95 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-3 text-center">
-          <p className="text-accent-foreground font-semibold">{hero.bannerText}</p>
-        </div>
-      </div>
+
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-20 text-center text-white">
+      <div className="relative z-10 container mx-auto px-4 py-12 md:py-20 text-center text-white">
         <div className="max-w-4xl mx-auto">
           {/* Tagline */}
           <p className="text-xl md:text-2xl font-light mb-4 text-primary-soft">{hero.tagline}</p>

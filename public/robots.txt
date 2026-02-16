@@ -1,14 +1,8 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
+Disallow: /wp-admin/
+Disallow: /wp-load.php
+Disallow: /wp-login.php
+Disallow: /xmlrpc.php
+
+Sitemap: https://insteppc.com/sitemap.xml

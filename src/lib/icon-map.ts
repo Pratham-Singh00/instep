@@ -26,7 +26,10 @@ import {
   User,
   Users,
   X,
-  Eye
+  Eye,
+  Puzzle,
+  HeartHandshake,
+  Smile
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
@@ -60,6 +63,9 @@ export const iconMap = {
   User,
   Users,
   X,
+  Puzzle,
+  HeartHandshake,
+  Smile,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof iconMap;

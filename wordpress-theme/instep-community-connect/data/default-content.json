@@ -55,7 +55,7 @@
     "titleBefore": "Walking",
     "titleHighlight": "in step",
     "titleAfter": "with you on your journey.",
-    "description": "For over 30 years, In Step has been the leader in Fairfax County for specialized group therapy, social skills training, and DBT for teens and adults.",
+    "description": "For over 30 years, In Step has been the leader in Northern Virginia and Washington DC area for specialized group therapy, social skills training, and DBT for teens and adults.",
     "primaryCta": {
       "label": "Learn More About Our Services",
       "url": "#services"
@@ -84,7 +84,7 @@
   },
   "about": {
     "heading": "The In Step Difference",
-    "description": "For over 30 years, In Step has been a beacon of hope in our community, providing comprehensive mental health services with a focus on inclusion, healing, and empowerment.",
+    "description": "Recognized for excellence in community mental health services, trauma-informed care, and innovative group therapy programs including our very own Stepping Stones & Parenting IQ developed by Cathi Cohen LCSW, CGP.",
     "storyHeading": "Our Story & Mission",
     "storyParagraphs": [
       "Founded with the vision of walking alongside individuals on their mental health journey, In Step has grown from a small practice to a comprehensive community mental health center serving diverse populations with specialized care.",
@@ -93,11 +93,12 @@
     ],
     "certificationsHeading": "Our Expertise & Certifications",
     "certifications": [
-      "Licensed Clinical Social Workers",
-      "Trauma-Informed Care Certified",
-      "DBT Skills Training Certified",
-      "IFS (Internal Family Systems)",
-      "S.P.A.C.E Treatment",
+      "Licensed Clinical Professionals",
+      "Stepping Stones Certified",
+      "Parenting IQ Training/Coaching Certified",
+      "DBT Skills",
+      "Trauma-Informed Care",
+      "Psychological Testing",
       "ADHD & ASD Specialists",
       "Couples Therapy",
       "LGBTQ+ Affirming Therapy",
@@ -135,8 +136,8 @@
       },
       {
         "icon": "Users",
-        "title": "Community Focused",
-        "description": "Our programs are designed to strengthen the entire community, creating lasting positive change for all."
+        "title": "Family Focused",
+        "description": "Our programs are designed to strengthen the entire family, creating lasting positive change for all."
       },
       {
         "icon": "Shield",
@@ -225,14 +226,14 @@
     }
   },
   "programs": {
-    "heading": "Community Programs",
-    "description": "Beyond traditional therapy, we offer specialized community programs designed to support individuals and families facing unique challenges and transitions.",
+    "heading": "Therapy Programs",
+    "description": "Beyond traditional therapy, we offer specialized group programs designed to support individuals and families facing unique challenges and transitions.",
     "items": [
       {
         "icon": "Users",
         "title": "DBT Skills Groups",
         "description": "Dialectical Behavior Therapy skills training in a supportive group environment, focusing on mindfulness, emotion regulation, and interpersonal effectiveness.",
-        "duration": "16-week cycles",
+        "duration": "38 weeks",
         "location": "Group therapy rooms",
         "features": [
           "Mindfulness training",
@@ -243,15 +244,15 @@
         "badge": "Evidence-Based",
         "badgeVariant": "default",
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
       {
         "icon": "BookOpen",
         "title": "Stepping Stones (Youth)",
-        "description": "Social skills development for children and teens, focusing on building healthy relationships and emotional intelligence.",
-        "duration": "8-12 weeks",
+        "description": "Evidence-based social skills development for children and teens by Cathi Cohen, focusing on building healthy relationships and emotional intelligence.",
+        "duration": "40 weeks",
         "location": "Youth-friendly spaces",
         "features": [
           "Social skills training",
@@ -262,15 +263,15 @@
         "badge": "Ages 8-18",
         "badgeVariant": "default",
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
       {
         "icon": "Home",
-        "title": "Parenting Skills Program",
+        "title": "Parenting IQ Program",
         "description": "Evidence-based parenting education and support to strengthen family relationships and improve communication.",
-        "duration": "10-week program",
+        "duration": "12 weeks",
         "location": "Family therapy rooms",
         "features": [
           "Communication skills",
@@ -281,7 +282,7 @@
         "badge": "Family-Focused",
         "badgeVariant": "default",
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
@@ -300,7 +301,7 @@
         "badge": "Free to Public",
         "badgeVariant": "default",
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
@@ -308,7 +309,7 @@
         "icon": "Puzzle",
         "title": "LEGO & Minecraft Therapy",
         "description": "Innovative social skills groups using LEGOs and Minecraft to teach collaboration, frustration tolerance, and problem-solving.",
-        "duration": "10-12 weeks",
+        "duration": "Ongoing",
         "location": "In-Person",
         "features": [
           "Collaborative Building",
@@ -319,7 +320,7 @@
         "badge": "Ages 6-14",
         "badgeVariant": "default",
         "cta": {
-          "label": "Join a Group",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
@@ -338,26 +339,64 @@
         "badge": "For Parents",
         "badgeVariant": "default",
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
       {
         "icon": "Users",
-        "title": "Young Adult Interpersonal Group",
-        "description": "Process group for young adults (18-28) navigating life transitions, relationships, and identity.",
+        "title": "Women Psychotherapy Group",
+        "description": "A supportive space for women to connect, share experiences, and grow together in a safe environment.",
         "duration": "Ongoing",
-        "location": "Evening Groups",
+        "location": "Group therapy rooms",
         "features": [
-          "Relationship Skills",
-          "Life Transitions",
-          "Peer Support",
-          "Identity Work"
+          "Connection & Support",
+          "Shared Experiences",
+          "Personal Growth",
+          "Safe Space"
         ],
-        "badge": "Ages 18-28",
+        "badge": "Women's Group",
         "badgeVariant": "default",
         "cta": {
-          "label": "Join Group",
+          "label": "Contact Us",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Brain",
+        "title": "Neurodivergent Group",
+        "description": "Support, skills, and connection for neurodivergent individuals in a neuro-affirming environment.",
+        "duration": "Ongoing",
+        "location": "Group therapy rooms",
+        "features": [
+          "Neuro-affirming",
+          "Skill Building",
+          "Peer Support",
+          "Understanding"
+        ],
+        "badge": "Neurodivergent",
+        "badgeVariant": "default",
+        "cta": {
+          "label": "Contact Us",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "Smile",
+        "title": "Confidence/Social Groups",
+        "description": "Building social confidence and connection through shared experiences and guided interaction.",
+        "duration": "Ongoing",
+        "location": "Group therapy rooms",
+        "features": [
+          "Social Confidence",
+          "Interaction Skills",
+          "Group Activities",
+          "Supportive Feedback"
+        ],
+        "badge": "Social Skills",
+        "badgeVariant": "default",
+        "cta": {
+          "label": "Contact Us",
           "url": "#contact"
         }
       }
@@ -399,10 +438,24 @@
       },
       {
         "name": "James T.",
-        "role": "Parent in Parenting Skills Program",
+        "role": "Parent in Parenting IQ Program",
         "content": "The parenting program taught me how to set boundaries while showing love and support. My relationship with my teenager has improved dramatically. Highly recommend to any parent struggling.",
         "rating": 5,
         "location": "McLean, VA"
+      },
+      {
+        "name": "Souhela P.",
+        "role": "Parent in Confidence/Social Groups",
+        "content": "This program helped my son to gain his confidence back. And he tries to use [the lessons he learned] more in real life.",
+        "rating": 5,
+        "location": "Northern VA"
+      },
+      {
+        "name": "John and Melanie T.",
+        "role": "Parents in Stepping Stones",
+        "content": "My wife and I consulted with Cathi Cohen for several sessions when we were at a loss as to how to manage our daughter's behavior. We found her to be available and compassionate while also being a straight shooter. She helped us make some hard changes in our relationship that needed to happen.",
+        "rating": 5,
+        "location": "Northern VA"
       }
     ],
     "cta": {
@@ -533,8 +586,8 @@
       {
         "icon": "Clock",
         "title": "Hours",
-        "primary": "Mon-Fri: 8AM-7PM",
-        "secondary": "Weekend & evening appointments available",
+        "primary": "10am-8pm Mon-Fr",
+        "secondary": "Sat & Sunday by appointment",
         "action": null
       }
     ],

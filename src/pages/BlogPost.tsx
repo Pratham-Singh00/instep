@@ -4,8 +4,30 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { BlogPost as BlogPostType, toPlainText } from "./Blog";
-import { Calendar, User, Clock, ArrowLeft, Tag as TagIcon, ExternalLink } from "lucide-react";
+import { SEO } from "@/components/SEO";
+import { Calendar, User, Clock, ArrowLeft, Tag as TagIcon } from "lucide-react";
+
+interface BlogPostType {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  date: string;
+  categories: string[];
+  tags: string[];
+  featured_image: string;
+  slug: string;
+  link?: string;
+  readingTime?: string;
+}
+
+const toPlainText = (value: string) =>
+  value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -23,6 +45,9 @@ const BlogPost = () => {
       setLoading(true);
       setError(null);
 
+
+
+      // If not in local data, try API
       if (!wpBridge?.endpoints?.posts) {
         setPost(null);
         setError("WordPress connection not available");
@@ -45,7 +70,10 @@ const BlogPost = () => {
         }
 
         const embedded = raw._embedded || {};
-        const author = embedded.author?.[0]?.name ?? "In Step";
+        // Check for custom author name first, then fallback to WP author
+        const customAuthor = raw.custom_author_name;
+        let author = customAuthor || embedded.author?.[0]?.name || "In Step PC Team";
+        if (author === "In Step") author = "In Step PC Team";
         const categories = (embedded["wp:term"]?.[0] || [])
           .map((term: any) => term.name)
           .filter(Boolean);
@@ -95,19 +123,20 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {post && (
+        <SEO
+          title={post.title}
+          description={post.excerpt}
+          image={post.featured_image}
+          type="article"
+          url={`/blog/${post.slug}`}
+        />
+      )}
       <Header />
       <main className="pt-32 pb-16">
         <section className="section-padding bg-gradient-to-br from-primary/5 to-accent/5">
           <div className="container mx-auto px-4 max-w-5xl">
-            <div className="flex items-center gap-3 mb-6">
-              <Button variant="ghost" onClick={() => navigate(-1)} className="px-2 text-primary hover:text-primary/80">
-                <ArrowLeft className="h-4 w-4 mr-1" />
-                Back
-              </Button>
-              <Button variant="link" onClick={() => navigate("/blog")} className="px-2">
-                View All Posts
-              </Button>
-            </div>
+
 
             {loading ? (
               <div className="space-y-4 animate-pulse">
@@ -124,77 +153,81 @@ const BlogPost = () => {
                 </Button>
               </div>
             ) : post ? (
-              <div>
-                <div className="mb-6">
-                  <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-3">
-                    <User className="h-4 w-4" />
-                    <span>{post.author}</span>
-                    <span>•</span>
-                    <Calendar className="h-4 w-4" />
-                    <span>{formatDate(post.date)}</span>
-                    {post.readingTime ? (
-                      <>
-                        <span>•</span>
-                        <Clock className="h-4 w-4" />
-                        <span>{post.readingTime}</span>
-                      </>
-                    ) : null}
-                  </div>
-                  <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
-                    {post.title}
-                  </h1>
-                  <div className="flex flex-wrap gap-2">
-                    {(post.categories && post.categories.length ? post.categories : ["General"]).map((category) => (
-                      <Badge key={category} variant="secondary" className="uppercase tracking-tight">
-                        {category}
+              <div className="max-w-4xl mx-auto">
+                {/* Back Button Top */}
+                <div className="mb-8">
+                  <Button variant="ghost" onClick={() => navigate("/blog")} className="pl-0 text-muted-foreground hover:text-primary">
+                    <ArrowLeft className="h-4 w-4 mr-2" />
+                    Go back to all articles
+                  </Button>
+                </div>
+
+                {/* Header Section (Title, Tags, Meta ABOVE Image) */}
+                <header className="text-center mb-12">
+                  {/* Tags & Categories */}
+                  <div className="flex flex-wrap justify-center gap-2 mb-6">
+                    {(post.categories || []).map((cat) => (
+                      <Badge key={cat} variant="secondary" className="px-3 py-1 text-sm">
+                        {cat}
+                      </Badge>
+                    ))}
+                    {(post.tags || []).map((tag) => (
+                      <Badge key={tag} variant="outline" className="px-3 py-1 text-sm">
+                        #{tag}
                       </Badge>
                     ))}
                   </div>
-                </div>
 
-                <div className="bg-white rounded-xl shadow-md border border-muted overflow-hidden">
+                  {/* Title */}
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight tracking-tight">
+                    {post.title}
+                  </h1>
+
+                  {/* Meta Data */}
+                  <div className="flex flex-wrap items-center justify-center gap-4 text-muted-foreground mb-8">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <User className="h-4 w-4 text-primary" />
+                      </div>
+                      <span className="font-medium text-foreground">{post.author}</span>
+                    </div>
+                    <span className="text-muted/30 hidden sm:inline">•</span>
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      <time dateTime={post.date}>{formatDate(post.date)}</time>
+                    </div>
+                    {post.readingTime && (
+                      <>
+                        <span className="text-muted/30 hidden sm:inline">•</span>
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-4 w-4" />
+                          <span>{post.readingTime}</span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Featured Image (Now Below Title) */}
                   {post.featured_image ? (
-                    <div className="relative h-72 md:h-96 overflow-hidden">
+                    <div className="rounded-2xl overflow-hidden shadow-lg mb-8 max-h-[500px] w-full mx-auto bg-muted">
                       <img
                         src={post.featured_image}
                         alt={post.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-center"
                       />
                     </div>
                   ) : null}
+                </header>
 
-                  <div className="p-6 md:p-10">
-                    <article
-                      className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground"
-                      dangerouslySetInnerHTML={{ __html: contentHtml }}
-                    />
-
-                    {post.tags?.length ? (
-                      <div className="mt-8 flex flex-wrap gap-2 text-sm text-muted-foreground">
-                        <TagIcon className="h-4 w-4" />
-                        {post.tags.map((tag) => (
-                          <Badge key={tag} variant="outline" className="text-xs">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    ) : null}
-
-                    <div className="mt-10 flex flex-wrap gap-3">
-                      <Button onClick={() => navigate("/blog")} variant="secondary">
-                        Back to blog
-                      </Button>
-                      {post.link ? (
-                        <Button asChild>
-                          <a href={post.link} target="_blank" rel="noopener noreferrer">
-                            View on WordPress
-                            <ExternalLink className="h-4 w-4 ml-2" />
-                          </a>
-                        </Button>
-                      ) : null}
-                    </div>
-                  </div>
+                {/* Content */}
+                <div className="bg-card rounded-xl shadow-sm border border-border p-8 md:p-12 mb-12">
+                  <article
+                    className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-img:rounded-xl"
+                    dangerouslySetInnerHTML={{ __html: contentHtml }}
+                  />
                 </div>
+
+
               </div>
             ) : (
               <div className="p-6 bg-muted/30 rounded-lg border border-muted">

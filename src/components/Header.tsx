@@ -4,6 +4,7 @@ import { Menu, X, Phone } from "lucide-react";
 import { useContent } from "@/context/ContentContext";
 import { SmartLink } from "@/components/SmartLink";
 import type { NavMenuItem } from "@/types/content";
+import logoImage from "@/assets/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,10 +24,10 @@ const Header = () => {
   );
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-navy/20">
+    <header className="sticky top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-navy/20">
       <div className="container mx-auto px-4">
         {/* Top bar with phone */}
-        <div className="flex items-center justify-between py-2 border-b border-navy-foreground/20">
+        <div className="flex items-center justify-between py-1 border-b border-navy-foreground/20">
           <div className="flex items-center space-x-2 text-navy-foreground text-sm">
             <Phone className="h-4 w-4" />
             <span className="font-medium">{phone}</span>
@@ -47,17 +48,14 @@ const Header = () => {
         </div>
 
         {/* Main navigation */}
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-2">
           {/* Logo */}
           <div className="flex items-center">
-            <SmartLink 
+            <SmartLink
               href="/"
               className="cursor-pointer"
             >
-              <h1 className="text-2xl font-bold text-navy-foreground">
-                {logoText}{" "}
-                {logoAccent ? <span className="text-primary">{logoAccent}</span> : null}
-              </h1>
+              <img src={logoImage} alt="In Step Community Connect" className="h-14 w-auto" />
             </SmartLink>
           </div>
 

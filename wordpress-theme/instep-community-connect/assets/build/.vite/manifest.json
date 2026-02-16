@@ -1,17 +1,19 @@
 {
   "index.html": {
-    "file": "assets/index-DvTXAQuM.js",
+    "file": "assets/index-C8rL2KYx.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "css": [
-      "assets/index-CiC9Bn-w.css"
+      "assets/index-DAWA6iKO.css"
     ],
     "assets": [
       "assets/hero-image-0XVGYSw4.jpg",
       "assets/individual-therapy-Cfalj4BQ.jpg",
       "assets/group-therapy-C78tKrfl.jpg",
       "assets/family-therapy-BY7XkmCP.jpg",
+      "assets/logo-BBih3v4f.png",
+      "assets/psych-test-extreme-195WZkov.png",
       "assets/CathieCohen-CwMKZFj4.jpg",
       "assets/ChristinaMarcone-CNvUxRVB.jpg",
       "assets/DaleSorg-q5oh5pUu.jpg",
@@ -104,5 +106,13 @@
   "src/assets/individual-therapy.jpg": {
     "file": "assets/individual-therapy-Cfalj4BQ.jpg",
     "src": "src/assets/individual-therapy.jpg"
+  },
+  "src/assets/logo.png": {
+    "file": "assets/logo-BBih3v4f.png",
+    "src": "src/assets/logo.png"
+  },
+  "src/assets/psych-test-extreme.png": {
+    "file": "assets/psych-test-extreme-195WZkov.png",
+    "src": "src/assets/psych-test-extreme.png"
   }
 }

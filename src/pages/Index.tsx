@@ -7,12 +7,32 @@ import Testimonials from "@/components/Testimonials";
 import GetInvolved from "@/components/GetInvolved";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { SEO } from "@/components/SEO";
+
+import { useContent } from "@/context/ContentContext";
 
 const Index = () => {
+  const {
+    content: { hero },
+  } = useContent();
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
+      <SEO
+        title="InStep PC | Mental Health & Therapy Services in Fairfax, VA"
+        description="Premere mental health group in Fairfax, Northern Virginia. Offering individual therapy, group counselling, psychological testing, and community support programs for over 30 years."
+      />
       <Header />
       <main>
+
+
+        {/* Static Banner */}
+        <div className="bg-accent/95 backdrop-blur-sm w-full relative z-20">
+          <div className="container mx-auto px-4 py-3 text-center">
+            <p className="text-accent-foreground font-semibold">{hero.bannerText}</p>
+          </div>
+        </div>
+
         <Hero />
         <About />
         <Services />

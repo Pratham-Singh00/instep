@@ -45,16 +45,7 @@
     width: 100%;
 }
 
-/* Admin bar spacing */
-body.admin-bar #instep-community-connect-root {
-    padding-top: 32px;
-}
 
-@media screen and (max-width: 782px) {
-    body.admin-bar #instep-community-connect-root {
-        padding-top: 46px;
-    }
-}
 
 /* Ensure proper box sizing */
 *,

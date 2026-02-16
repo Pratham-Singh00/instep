@@ -40,6 +40,17 @@ export const ContentProvider: React.FC<React.PropsWithChildren> = ({ children })
   const contentEndpoint = useMemo(() => resolveContentEndpoint(), []);
 
   const fetchContent = async () => {
+    // DISCONNECT MODE:
+    // We are temporarily disabling the API fetch to force the application to use
+    // the local content-defaults.json. This prevents server-side caching or
+    // stale database entries from overwriting our critical content updates.
+    //
+    // If dynamic content (like Team Members from WP Admin) is needed in the future,
+    // we should re-enable this BUT with a strategy to prioritize local text updates.
+    setHasWordPressSource(false);
+    return;
+
+    /*
     if (!contentEndpoint) {
       setHasWordPressSource(false);
       return;
@@ -69,6 +80,7 @@ export const ContentProvider: React.FC<React.PropsWithChildren> = ({ children })
     } finally {
       setLoading(false);
     }
+    */
   };
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { 
+import {
   MessageSquare,
   AlertTriangle,
   CheckCircle,
@@ -19,14 +19,20 @@ import { getIconByName } from "@/lib/icon-map";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
+    confirmEmail: "",
     phone: "",
-    service: "",
-    urgency: "",
+    clientName: "",
+    clientAge: "",
+    clientGrade: "",
+    clientSchool: "",
+    inquiryReasons: [] as string[],
+    referralSource: "",
     message: ""
   });
-  
+
   const { toast } = useToast();
   const {
     content: { contact },
@@ -34,26 +40,28 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
       toast({
-        title: contact.formValidation.missingTitle,
-        description: contact.formValidation.missingDescription,
+        title: "Missing Information",
+        description: "Please fill in all required fields marked with *",
         variant: "destructive"
       });
       return;
     }
-    if (formData.urgency === "crisis") {
+
+    if (formData.email !== formData.confirmEmail) {
       toast({
-        title: contact.formValidation.crisisTitle,
-        description: contact.formValidation.crisisDescription,
+        title: "Email Mismatch",
+        description: "Please check that your email addresses match.",
         variant: "destructive"
       });
       return;
     }
+
     // Submit to WordPress REST API
     try {
-  const endpoint = "/wp-json/instep/v1/contact-request";
-  const response = await fetch(endpoint, {
+      const endpoint = "/wp-json/instep/v1/contact-request";
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -69,11 +77,17 @@ const Contact = () => {
         description: contact.formSuccess.description,
       });
       setFormData({
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
+        confirmEmail: "",
         phone: "",
-        service: "",
-        urgency: "",
+        clientName: "",
+        clientAge: "",
+        clientGrade: "",
+        clientSchool: "",
+        inquiryReasons: [],
+        referralSource: "",
         message: ""
       });
     } catch (err: any) {
@@ -85,9 +99,37 @@ const Contact = () => {
     }
   };
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+
+  const handleCheckboxChange = (reason: string, checked: boolean) => {
+    setFormData(prev => {
+      const current = prev.inquiryReasons || [];
+      if (checked) {
+        return { ...prev, inquiryReasons: [...current, reason] };
+      } else {
+        return { ...prev, inquiryReasons: current.filter(r => r !== reason) };
+      }
+    });
+  };
+
+  const inquiryOptions = [
+    "Individual therapy",
+    "Group Therapy",
+    "Psychoeducational Testing",
+    "Parent Coaching",
+    "Other"
+  ];
+
+  const referralOptions = [
+    "None",
+    "Doctor",
+    "School",
+    "Friend/Family",
+    "Online Search",
+    "Other"
+  ];
 
   return (
     <section id="contact" className="section-padding bg-muted/30">
@@ -124,7 +166,7 @@ const Contact = () => {
                             {method.title}
                           </h4>
                           {method.action ? (
-                            <SmartLink 
+                            <SmartLink
                               href={method.action}
                               className="text-primary hover:underline font-medium"
                             >
@@ -146,30 +188,9 @@ const Contact = () => {
               })}
             </div>
 
-            {/* Crisis Alert */}
-            <Card className="border-destructive/20 bg-destructive/5">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-destructive mb-2">{contact.crisis.heading}</h4>
-                    <p className="text-sm text-muted-foreground mb-4">{contact.crisis.description}</p>
-                    <div className="flex flex-col sm:flex-row gap-2">
-                      <Button variant="destructive" size="sm" asChild>
-                        <SmartLink href={contact.crisis.primaryCta.url || "tel:988"}>{contact.crisis.primaryCta.label}</SmartLink>
-                      </Button>
-                      {contact.crisis.secondaryCta ? (
-                        <Button variant="outline" size="sm" asChild>
-                          <SmartLink href={contact.crisis.secondaryCta.url || "tel:911"}>
-                            {contact.crisis.secondaryCta.label}
-                          </SmartLink>
-                        </Button>
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+
+
+
           </div>
 
           {/* Contact Form */}
@@ -178,99 +199,154 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MessageSquare className="h-5 w-5 text-primary" />
-                  Send Us a Message
+                  Get Started Now
                 </CardTitle>
                 <CardDescription>
-                  Fill out the form below and we'll get back to you within 24-48 hours
+                  {" "}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Name and Email */}
+                  {/* Name */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="contact-name">Full Name *</Label>
-                      <Input 
-                        id="contact-name"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
-                        required 
+                      <Label htmlFor="firstName">First Name *</Label>
+                      <Input
+                        id="firstName"
+                        value={formData.firstName}
+                        onChange={(e) => handleInputChange("firstName", e.target.value)}
+                        required
                       />
                     </div>
                     <div className="space-y-2">
+                      <Label htmlFor="lastName">Last Name *</Label>
+                      <Input
+                        id="lastName"
+                        value={formData.lastName}
+                        onChange={(e) => handleInputChange("lastName", e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
                       <Label htmlFor="contact-email">Email *</Label>
-                      <Input 
+                      <Input
                         id="contact-email"
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleInputChange("email", e.target.value)}
-                        required 
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="confirm-email">Confirm Email *</Label>
+                      <Input
+                        id="confirm-email"
+                        type="email"
+                        value={formData.confirmEmail}
+                        onChange={(e) => handleInputChange("confirmEmail", e.target.value)}
+                        required
                       />
                     </div>
                   </div>
 
-                  {/* Phone */}
-                  <div className="space-y-2">
-                    <Label htmlFor="contact-phone">Phone Number</Label>
-                    <Input 
-                      id="contact-phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
-                    />
+                  {/* Phone + Client Info Row 1 */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="contact-phone">Phone Number *</Label>
+                      <Input
+                        id="contact-phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange("phone", e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="clientName">Client Name *</Label>
+                      <Input
+                        id="clientName"
+                        value={formData.clientName}
+                        onChange={(e) => handleInputChange("clientName", e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="clientAge">Client's Age *</Label>
+                      <Input
+                        id="clientAge"
+                        value={formData.clientAge}
+                        onChange={(e) => handleInputChange("clientAge", e.target.value)}
+                        required
+                      />
+                    </div>
                   </div>
 
-                  {/* Service Interest */}
-                <div className="space-y-2">
-                  <Label>Service Interest</Label>
-                  <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a service you're interested in" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {contact.services.map((service) => (
-                        <SelectItem key={service} value={service.toLowerCase()}>
-                          {service}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                  {/* Client Info Row 2 */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="clientGrade">Client Grade (enter N/A if inapplicable)</Label>
+                      <Input
+                        id="clientGrade"
+                        value={formData.clientGrade}
+                        onChange={(e) => handleInputChange("clientGrade", e.target.value)}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="clientSchool">Client School (enter N/A if inapplicable)</Label>
+                      <Input
+                        id="clientSchool"
+                        value={formData.clientSchool}
+                        onChange={(e) => handleInputChange("clientSchool", e.target.value)}
+                      />
+                    </div>
+                  </div>
 
-                {/* Urgency Level */}
-                <div className="space-y-2">
-                  <Label>How soon do you need support?</Label>
-                  <Select value={formData.urgency} onValueChange={(value) => handleInputChange("urgency", value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select urgency level" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {contact.urgencyLevels.map((level) => (
-                        <SelectItem key={level.value} value={level.value}>
-                          {level.label}
-                        </SelectItem>
+                  {/* Inquiry Reasons */}
+                  <div className="space-y-3">
+                    <Label className="text-secondary-foreground font-semibold">Reason for Inquiry (check all that apply) <span className="text-destructive">(Required)</span></Label>
+                    <div className="flex flex-wrap gap-4">
+                      {inquiryOptions.map((option) => (
+                        <div key={option} className="flex items-center space-x-2">
+                          <input
+                            type="checkbox"
+                            id={`reason-${option}`}
+                            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                            checked={formData.inquiryReasons.includes(option)}
+                            onChange={(e) => handleCheckboxChange(option, e.target.checked)}
+                          />
+                          <Label htmlFor={`reason-${option}`} className="font-normal">{option}</Label>
+                        </div>
                       ))}
-                    </SelectContent>
-                  </Select>
-                  {formData.urgency && (
-                    <Badge 
-                      variant={(() => {
-                        const color = contact.urgencyLevels.find((l) => l.value === formData.urgency)?.color;
-                        return ["default", "destructive", "outline", "secondary"].includes(color) ? color : "outline";
-                      })()}
-                      className="mt-2"
-                    >
-                      {contact.urgencyLevels.find((l) => l.value === formData.urgency)?.label}
-                    </Badge>
-                  )}
-                </div>
+                    </div>
+                  </div>
+
+                  {/* Referral Source */}
+                  <div className="space-y-2">
+                    <Label>Referral Source</Label>
+                    <Select value={formData.referralSource} onValueChange={(value) => handleInputChange("referralSource", value)}>
+                      <SelectTrigger className="bg-blue-50/50 border-blue-200">
+                        <SelectValue placeholder="Select Source" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {referralOptions.map((opt) => (
+                          <SelectItem key={opt} value={opt}>
+                            {opt}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
 
                   {/* Message */}
                   <div className="space-y-2">
-                    <Label htmlFor="contact-message">Message *</Label>
-                    <Textarea 
+                    <Label htmlFor="contact-message" className="font-semibold">Reason for Reaching Out: <span className="text-destructive">(Required)</span></Label>
+                    <Textarea
                       id="contact-message"
-                      placeholder="Tell us about your situation, questions, or how we can help you..."
                       rows={5}
                       value={formData.message}
                       onChange={(e) => handleInputChange("message", e.target.value)}
@@ -286,12 +362,11 @@ const Contact = () => {
                     </p>
                   </div>
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full btn-hero"
-                    disabled={formData.urgency === "crisis"}
                   >
-                    {formData.urgency === "crisis" ? contact.crisis.primaryCta.label : "Send Message"}
+                    Send Message
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </form>

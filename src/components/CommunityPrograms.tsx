@@ -16,7 +16,7 @@ const CommunityPrograms = () => {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gradient">{programs.heading}</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gradient pb-2 leading-relaxed">{programs.heading}</h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {programs.description}
           </p>
@@ -26,14 +26,14 @@ const CommunityPrograms = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {programs.items.map((program) => {
             const Icon = getIconByName(program.icon);
-            
+
             return (
-              <Card key={program.title} className="card-elevated group hover:scale-105 transition-all duration-300">
-                <CardHeader className="text-center pb-4">
+              <Card key={program.title} className="card-elevated group hover:scale-105 transition-all duration-300 h-full flex flex-col">
+                <CardHeader className="text-center pb-4 flex-none">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4 mx-auto group-hover:bg-primary/20 transition-colors">
                     {Icon ? <Icon className="h-8 w-8 text-primary" /> : null}
                   </div>
-                  
+
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <CardTitle className="text-xl font-bold">{program.title}</CardTitle>
                   </div>
@@ -43,13 +43,13 @@ const CommunityPrograms = () => {
                       {program.badge}
                     </Badge>
                   ) : null}
-                  
+
                   <CardDescription className="text-base leading-relaxed">
                     {program.description}
                   </CardDescription>
                 </CardHeader>
-                
-                <CardContent className="pt-0">
+
+                <CardContent className="pt-0 flex flex-col flex-grow">
                   {/* Program Details */}
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center text-sm text-muted-foreground">
@@ -63,7 +63,8 @@ const CommunityPrograms = () => {
                   </div>
 
                   {/* Features List */}
-                  <div className="space-y-2 mb-6">
+                  {/* We use flex-grow here to push the button down if we wanted, but putting mt-auto on the button is safer if we want the features to stick to top */}
+                  <div className="space-y-2 mb-6 flex-grow">
                     {program.features.map((feature, index) => (
                       <div key={index} className="flex items-center text-sm">
                         <div className="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0" />
@@ -74,7 +75,7 @@ const CommunityPrograms = () => {
 
                   {/* CTA Button */}
                   {program.cta ? (
-                    <Button className="w-full btn-hero group" asChild>
+                    <Button className="w-full btn-hero group mt-auto" asChild>
                       <SmartLink href={program.cta.url || "#"}>
                         {program.cta.label}
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -86,7 +87,6 @@ const CommunityPrograms = () => {
             );
           })}
         </div>
-
         {/* Emergency Contact Banner */}
         <div className="card-elevated p-8 text-center border-l-4 border-l-destructive">
           <h3 className="text-xl font-bold mb-4 text-destructive">{programs.crisisBanner.heading}</h3>
@@ -106,6 +106,7 @@ const CommunityPrograms = () => {
             ) : null}
           </div>
         </div>
+
       </div>
     </section>
   );

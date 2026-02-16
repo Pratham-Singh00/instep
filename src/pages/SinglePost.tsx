@@ -28,9 +28,9 @@ const SinglePost = () => {
         // Fetch post by slug
         const response = await fetch(`${wpBridge.endpoints.posts}?slug=${slug}&_embed`);
         if (!response.ok) throw new Error("Failed to fetch post");
-        
+
         const data = await response.json();
-        
+
         if (data.length > 0) {
           setPost(data[0]);
         } else {
@@ -75,7 +75,8 @@ const SinglePost = () => {
   }
 
   const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
-  const authorName = post._embedded?.author?.[0]?.name || "In Step";
+  let authorName = post._embedded?.author?.[0]?.name || "In Step PC Team";
+  if (authorName === "In Step") authorName = "In Step PC Team";
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -91,15 +92,15 @@ const SinglePost = () => {
 
           {featuredImage && (
             <div className="rounded-xl overflow-hidden mb-8 aspect-video">
-              <img 
-                src={featuredImage} 
+              <img
+                src={featuredImage}
                 alt={post.title.rendered}
                 className="w-full h-full object-cover"
               />
             </div>
           )}
 
-          <h1 
+          <h1
             className="text-3xl md:text-5xl font-bold mb-6 text-foreground"
             dangerouslySetInnerHTML={{ __html: post.title.rendered }}
           />
@@ -115,7 +116,7 @@ const SinglePost = () => {
             </div>
           </div>
 
-          <div 
+          <div
             className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary hover:prose-a:text-primary/80"
             dangerouslySetInnerHTML={{ __html: post.content.rendered }}
           />

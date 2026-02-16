@@ -4,10 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { SmartLink } from "@/components/SmartLink";
-import { 
-  Calendar, 
-  User, 
-  ArrowRight, 
+import {
+  Calendar,
+  User,
+  ArrowRight,
   Search,
   Clock,
   BookOpen,
@@ -17,8 +17,8 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useContent } from "@/context/ContentContext";
+import { SEO } from "@/components/SEO";
 
-// FIXED: Added 'export' so other files can use this interface
 export interface BlogPost {
   id: number;
   title: string;
@@ -35,7 +35,6 @@ export interface BlogPost {
   views?: number;
 }
 
-// FIXED: Added 'export' so other files can use this function
 export const toPlainText = (value: string) =>
   value
     .replace(/<[^>]+>/g, " ")
@@ -72,32 +71,6 @@ const Blog = () => {
       views: 324
     },
     {
-      id: 2,
-      title: "Supporting a Loved One Through Reentry",
-      excerpt: "Practical tips for families and friends supporting someone transitioning back to community life after incarceration.",
-      content: "",
-      author: "Michael Rodriguez, LCSW",
-      date: "2024-03-10",
-      categories: ["Reentry Support", "Family"],
-      tags: ["reentry", "family support", "community"],
-      featured_image: "/api/placeholder/400/250",
-      slug: "supporting-loved-one-reentry",
-      views: 256
-    },
-    {
-      id: 3,
-      title: "Breaking the Cycle: Domestic Violence Recovery",
-      excerpt: "Understanding the path to healing and rebuilding life after experiencing domestic violence.",
-      content: "",
-      author: "Jennifer Martinez, LPC",
-      date: "2024-03-05",
-      categories: ["Domestic Violence", "Recovery"],
-      tags: ["domestic violence", "recovery", "healing"],
-      featured_image: "/api/placeholder/400/250",
-      slug: "breaking-cycle-domestic-violence-recovery",
-      views: 189
-    },
-    {
       id: 4,
       title: "Building Healthy Parenting Skills",
       excerpt: "Evidence-based strategies for effective parenting and creating positive family dynamics.",
@@ -132,7 +105,9 @@ const Blog = () => {
         const data = await response.json();
         const mappedPosts: BlogPost[] = data.map((post: any) => {
           const embedded = post._embedded || {};
-          const author = embedded.author?.[0]?.name ?? "In Step";
+          const customAuthor = post.custom_author_name;
+          let author = customAuthor || embedded.author?.[0]?.name || "In Step PC Team";
+          if (author === "In Step") author = "In Step PC Team";
           const categories = (embedded["wp:term"]?.[0] || [])
             .map((term: any) => term.name)
             .filter(Boolean);
@@ -212,6 +187,11 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Resources & Blog | InStep PC"
+        description="Articles, resources, and insights on mental health, parenting, and community support from In Step's clinical team."
+        url="/blog"
+      />
       <Header />
       <main className="pt-32">
         {/* Hero Section */}
@@ -254,9 +234,10 @@ const Blog = () => {
                 </div>
               </div>
               {error ? (
-                <p className="text-center text-sm text-destructive mt-4">
-                  Unable to load the latest WordPress posts. Showing fallback articles.
-                </p>
+                <div className="text-center mt-4 p-4 bg-destructive/10 rounded-lg border border-destructive/20">
+                  <p className="text-sm text-destructive font-semibold">Unable to load posts from WordPress</p>
+                  <p className="text-xs text-muted-foreground mt-1 font-mono">{error}</p>
+                </div>
               ) : null}
             </div>
           </div>
@@ -284,7 +265,7 @@ const Blog = () => {
                 <BookOpen className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">No articles found</h3>
                 <p className="text-muted-foreground">
-                  {searchTerm || selectedCategory !== "all" 
+                  {searchTerm || selectedCategory !== "all"
                     ? "Try adjusting your search or filter criteria."
                     : blogPage.emptyState
                   }
@@ -295,8 +276,8 @@ const Blog = () => {
                 {filteredPosts.map(post => (
                   <Card key={post.id} className="card-elevated hover:scale-105 transition-all duration-300 overflow-hidden">
                     <div className="relative h-48 overflow-hidden">
-                      <img 
-                        src={post.featured_image} 
+                      <img
+                        src={post.featured_image}
                         alt={post.title}
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                       />
@@ -306,7 +287,7 @@ const Blog = () => {
                         </Badge>
                       </div>
                     </div>
-                    
+
                     <CardContent className="p-6">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                         <User className="h-3 w-3" />
@@ -315,15 +296,15 @@ const Blog = () => {
                         <Calendar className="h-3 w-3" />
                         <span>{formatDate(post.date)}</span>
                       </div>
-                      
+
                       <h3 className="text-xl font-bold mb-3 text-foreground line-clamp-2">
                         {post.title}
                       </h3>
-                      
+
                       <p className="text-muted-foreground mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
-                      
+
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Clock className="h-3 w-3" />
@@ -332,7 +313,7 @@ const Blog = () => {
                           <Eye className="h-3 w-3" />
                           <span>{post.views ?? "—"} views</span>
                         </div>
-                        
+
                         <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80" asChild>
                           <SmartLink href={`/blog/${post.slug}`}>
                             Read More
@@ -340,7 +321,7 @@ const Blog = () => {
                           </SmartLink>
                         </Button>
                       </div>
-                      
+
                       <div className="flex flex-wrap gap-1 mt-4">
                         {post.tags.slice(0, 3).map(tag => (
                           <Badge key={tag} variant="outline" className="text-xs">
@@ -354,22 +335,7 @@ const Blog = () => {
               </div>
             )}
 
-            {/* WordPress Integration Note */}
-            <div className="mt-16 p-6 bg-muted/30 rounded-lg border border-muted">
-              <h3 className="text-lg font-semibold mb-2 text-foreground">
-                WordPress Integration {hasWordPressSource ? "Active" : "Ready"}
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                {hasWordPressSource
-                  ? "Posts are being pulled directly from WordPress. Publish new content in WordPress to see it here instantly."
-                  : "Connect this site to WordPress and publish posts—this page will automatically render them via the REST API."}
-              </p>
-              <div className="text-sm text-muted-foreground">
-                <strong>WordPress API Endpoint:</strong> <code>{wpBridge?.endpoints?.posts ?? "/wp-json/wp/v2/posts"}</code><br/>
-                <strong>Featured Images:</strong> Automatically pulled from WordPress media library<br/>
-                <strong>Categories & Tags:</strong> Synced with WordPress taxonomy
-              </div>
-            </div>
+
           </div>
         </section>
       </main>

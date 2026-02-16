@@ -96,7 +96,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {footer.links.services.map((link) => (
                 <li key={link.label}>
-                  <SmartLink 
+                  <SmartLink
                     href={link.href}
                     className="text-sm text-navy-foreground/80 hover:text-primary transition-colors"
                   >
@@ -113,7 +113,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {footer.links.programs.map((link) => (
                 <li key={link.label}>
-                  <SmartLink 
+                  <SmartLink
                     href={link.href}
                     className="text-sm text-navy-foreground/80 hover:text-primary transition-colors"
                   >
@@ -130,7 +130,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {footer.links.company.map((link) => (
                 <li key={link.label}>
-                  <SmartLink 
+                  <SmartLink
                     href={link.href}
                     className="text-sm text-navy-foreground/80 hover:text-primary transition-colors"
                   >
