@@ -723,7 +723,11 @@
       ]
     },
     "bottomBar": {
-      "legal": "Licensed mental health practice.",
+      "legal": "developed by",
+      "developer": {
+        "label": "DMV Web Designs",
+        "href": "https://dmvwebdesigns.net/"
+      },
       "links": [
         {
           "label": "Privacy Policy",

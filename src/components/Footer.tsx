@@ -148,7 +148,20 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-navy-foreground/60">
-              © {currentYear} {footer.about.heading}. All rights reserved. {footer.bottomBar.legal}
+              © {currentYear} {footer.about.heading} {footer.bottomBar.legal}
+              {footer.bottomBar.developer ? (
+                <>
+                  {" "}
+                  <SmartLink
+                    href={footer.bottomBar.developer.href}
+                    className="hover:text-primary transition-colors"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {footer.bottomBar.developer.label}
+                  </SmartLink>
+                </>
+              ) : null}
             </div>
             <div className="flex items-center gap-6 text-sm text-navy-foreground/60">
               {footer.bottomBar.links.map((link) => (
