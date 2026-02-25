@@ -55,7 +55,7 @@
     "titleBefore": "Walking",
     "titleHighlight": "in step",
     "titleAfter": "with you on your journey.",
-    "description": "For over 30 years, In Step has been the leader in Northern Virginia and Washington DC area for specialized group therapy, social skills training, and DBT for teens and adults.",
+    "description": "For over 30 years, In Step has been the leader in Northern Virginia and the Washington DC area for individual, group and family therapy, specializing in social skills training, parent coaching, Interpersonal psychotherapy, DBT and IFS to name a few.",
     "primaryCta": {
       "label": "Learn More About Our Services",
       "url": "#services"
@@ -87,7 +87,7 @@
     "description": "Recognized for excellence in community mental health services, trauma-informed care, and innovative group therapy programs including our very own Stepping Stones & Parenting IQ developed by Cathi Cohen LCSW, CGP.",
     "storyHeading": "Our Story & Mission",
     "storyParagraphs": [
-      "Founded with the vision of walking alongside individuals on their mental health journey, In Step has grown from a small practice to a comprehensive community mental health center serving diverse populations with specialized care.",
+      "Founded with the vision of walking alongside individuals on their mental health journey, In Step has grown from a small practice to serving diverse populations with specialized care.",
       "We specialize in offering a wide range of group treatments including our renowned DBT skills groups and Stepping Stones social skills for children and teens.",
       "Our team takes special care to match individuals with appropriate support chronologically, developmentally, and emotionally, ensuring that every person receives the most effective and personalized care possible."
     ],
@@ -202,8 +202,8 @@
       },
       {
         "icon": "Brain",
-        "title": "Psychological Testing",
-        "description": "Psycho-educational testing offers valuable insights into the roots of challenges, supplying essential data to guide therapeutic and educational interventions effectively.",
+        "title": "Psycho-educational Testing",
+        "description": "Comprehensive psychological and educational evaluations to identify learning differences, ADHD, and other needs to guide interventions.",
         "image": null,
         "alt": "Professional assessment and testing environment for psychological evaluation",
         "cta": {
@@ -287,25 +287,6 @@
         }
       },
       {
-        "icon": "Briefcase",
-        "title": "Community Workshops",
-        "description": "Educational workshops on mental health topics, stress management, and wellness strategies for community members.",
-        "duration": "Monthly events",
-        "location": "Community center",
-        "features": [
-          "Mental health education",
-          "Stress management",
-          "Wellness strategies",
-          "Community building"
-        ],
-        "badge": "Free to Public",
-        "badgeVariant": "default",
-        "cta": {
-          "label": "Contact Us",
-          "url": "#contact"
-        }
-      },
-      {
         "icon": "Puzzle",
         "title": "LEGO & Minecraft Therapy",
         "description": "Innovative social skills groups using LEGOs and Minecraft to teach collaboration, frustration tolerance, and problem-solving.",
@@ -364,7 +345,7 @@
       },
       {
         "icon": "Brain",
-        "title": "Neurodivergent Group",
+        "title": "Neurodivergent Groups",
         "description": "Support, skills, and connection for neurodivergent individuals in a neuro-affirming environment.",
         "duration": "Ongoing",
         "location": "Group therapy rooms",
@@ -475,20 +456,20 @@
     "heading": "Partner With Us",
     "description": "Join our mission to expand access to quality mental health care through strategic partnerships, professional services, and community collaboration.",
     "businessServicesHeading": "Professional Services",
-    "businessServicesDescription": "We offer comprehensive mental health solutions for organizations, businesses, and professional groups.",
+    "businessServicesDescription": "We offer comprehensive mental health solutions.",
     "businessServices": [
       {
-        "icon": "Brain",
-        "title": "Psycho-educational Testing",
-        "description": "Comprehensive psychological and educational evaluations to identify learning differences, ADHD, and other needs to guide interventions.",
+        "icon": "Briefcase",
+        "title": "Community Workshops",
+        "description": "Educational workshops on mental health topics, stress management, and wellness strategies for organizations and community members.",
         "features": [
-          "ADHD Assessments",
-          "Learning Disability Testing",
-          "Gifted Testing",
-          "Detailed Reports"
+          "Mental health education",
+          "Stress management",
+          "Wellness strategies",
+          "Community building"
         ],
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
@@ -509,7 +490,7 @@
       },
       {
         "icon": "BookOpen",
-        "title": "IEP/504 Parent Workshops",
+        "title": "School Advocacy",
         "description": "Empowering parents with knowledge and strategies to navigate the IEP and 504 plan process for their children.",
         "features": [
           "IEP Understanding",
@@ -599,8 +580,7 @@
       "DBT Skills Groups",
       "S.P.A.C.E Program",
       "Parenting Skills Program",
-      "Psychological Testing",
-      "Community Workshops"
+      "Psycho-educational Testing"
     ],
     "urgencyLevels": [
       {
@@ -685,7 +665,7 @@
           "href": "#services"
         },
         {
-          "label": "Psychological Testing",
+          "label": "Psycho-educational Testing",
           "href": "#services"
         }
       ],
@@ -695,7 +675,31 @@
           "href": "#programs"
         },
         {
-          "label": "Youth Programs",
+          "label": "Stepping Stones (Youth)",
+          "href": "#programs"
+        },
+        {
+          "label": "Parenting IQ Program",
+          "href": "#programs"
+        },
+        {
+          "label": "LEGO & Minecraft Therapy",
+          "href": "#programs"
+        },
+        {
+          "label": "S.P.A.C.E. Treatment",
+          "href": "#programs"
+        },
+        {
+          "label": "Women Psychotherapy Group",
+          "href": "#programs"
+        },
+        {
+          "label": "Neurodivergent Groups",
+          "href": "#programs"
+        },
+        {
+          "label": "Confidence/Social Groups",
           "href": "#programs"
         }
       ],
@@ -1109,6 +1113,51 @@
         ],
         "email": "mary@insteppc.com",
         "experienceYears": 10,
+        "education": [],
+        "location": "Northern VA"
+      },
+      {
+        "name": "Monica Manaotl",
+        "title": "Office Manager",
+        "credentials": [],
+        "bio": null,
+        "image": "Monica Manaotl Picture.JPG",
+        "specialties": [],
+        "languages": [
+          "English"
+        ],
+        "email": null,
+        "experienceYears": null,
+        "education": [],
+        "location": "Northern VA"
+      },
+      {
+        "name": "Maya Dias",
+        "title": "Business Manager",
+        "credentials": [],
+        "bio": null,
+        "image": "Maya Dias Headshot.jpg",
+        "specialties": [],
+        "languages": [
+          "English"
+        ],
+        "email": null,
+        "experienceYears": null,
+        "education": [],
+        "location": "Northern VA"
+      },
+      {
+        "name": "Inga Mency",
+        "title": "Practice Manager (on leave)",
+        "credentials": [],
+        "bio": null,
+        "image": null,
+        "specialties": [],
+        "languages": [
+          "English"
+        ],
+        "email": null,
+        "experienceYears": null,
         "education": [],
         "location": "Northern VA"
       }

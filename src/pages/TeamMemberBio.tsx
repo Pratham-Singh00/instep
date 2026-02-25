@@ -59,9 +59,7 @@ const TeamMemberBio = () => {
                 {member.qualification}
               </div>
 
-              <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed text-left">
-                {member.bio}
-              </div>
+              <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed text-left [&_a]:text-blue-500 [&_a]:hover:text-blue-700 [&_a]:underline" dangerouslySetInnerHTML={{ __html: member.bio }} />
             </div>
 
             <div className="flex flex-col items-center gap-6 order-1 md:order-2 md:w-80 flex-shrink-0">

@@ -1,19 +1,19 @@
 {
   "index.html": {
-    "file": "assets/index-C8rL2KYx.js",
+    "file": "assets/index-DQxP6QLZ.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "css": [
-      "assets/index-DAWA6iKO.css"
+      "assets/index-BQ9o_Xiw.css"
     ],
     "assets": [
-      "assets/hero-image-0XVGYSw4.jpg",
+      "assets/hero-image-Q-w7K6nX.jpg",
       "assets/individual-therapy-Cfalj4BQ.jpg",
       "assets/group-therapy-C78tKrfl.jpg",
       "assets/family-therapy-BY7XkmCP.jpg",
       "assets/logo-BBih3v4f.png",
-      "assets/psych-test-extreme-195WZkov.png",
+      "assets/psych-test-extreme-DDU1XZY1.jpg",
       "assets/CathieCohen-CwMKZFj4.jpg",
       "assets/ChristinaMarcone-CNvUxRVB.jpg",
       "assets/DaleSorg-q5oh5pUu.jpg",
@@ -28,7 +28,9 @@
       "assets/MaryShuffleton-CJY1QSCY.jpg",
       "assets/RachelCherian-CS_YQ6JO.jpg",
       "assets/SalimaJiwa-B3wNGw1O.jpg",
-      "assets/ZaraAhmad-fEgAYS4L.jpg"
+      "assets/ZaraAhmad-fEgAYS4L.jpg",
+      "assets/Monica Manaotl Picture-DVGWeNuF.JPG",
+      "assets/Maya Dias Headshot-DKRYaCxQ.jpg"
     ]
   },
   "src/assets/CathieCohen.jpg": {
@@ -79,6 +81,14 @@
     "file": "assets/MaryShuffleton-CJY1QSCY.jpg",
     "src": "src/assets/MaryShuffleton.jpg"
   },
+  "src/assets/Maya Dias Headshot.jpg": {
+    "file": "assets/Maya Dias Headshot-DKRYaCxQ.jpg",
+    "src": "src/assets/Maya Dias Headshot.jpg"
+  },
+  "src/assets/Monica Manaotl Picture.JPG": {
+    "file": "assets/Monica Manaotl Picture-DVGWeNuF.JPG",
+    "src": "src/assets/Monica Manaotl Picture.JPG"
+  },
   "src/assets/RachelCherian.jpg": {
     "file": "assets/RachelCherian-CS_YQ6JO.jpg",
     "src": "src/assets/RachelCherian.jpg"
@@ -100,7 +110,7 @@
     "src": "src/assets/group-therapy.jpg"
   },
   "src/assets/hero-image.jpg": {
-    "file": "assets/hero-image-0XVGYSw4.jpg",
+    "file": "assets/hero-image-Q-w7K6nX.jpg",
     "src": "src/assets/hero-image.jpg"
   },
   "src/assets/individual-therapy.jpg": {
@@ -111,8 +121,8 @@
     "file": "assets/logo-BBih3v4f.png",
     "src": "src/assets/logo.png"
   },
-  "src/assets/psych-test-extreme.png": {
-    "file": "assets/psych-test-extreme-195WZkov.png",
-    "src": "src/assets/psych-test-extreme.png"
+  "src/assets/psych-test-extreme.jpg": {
+    "file": "assets/psych-test-extreme-DDU1XZY1.jpg",
+    "src": "src/assets/psych-test-extreme.jpg"
   }
 }

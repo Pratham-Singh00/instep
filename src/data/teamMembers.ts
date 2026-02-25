@@ -13,6 +13,9 @@ import maryShuffletonImg from "@/assets/MaryShuffleton.jpg";
 import rachelCherianImg from "@/assets/RachelCherian.jpg";
 import salimaJiwaImg from "@/assets/SalimaJiwa.jpg";
 import zaraAhmadImg from "@/assets/ZaraAhmad.jpg";
+import monicaManaotlImg from "@/assets/Monica Manaotl Picture.JPG?url";
+import mayaDiasImg from "@/assets/Maya Dias Headshot.jpg?url";
+import ingaMencyImg from "@/assets/Inga Mency Headshot.jpg?url";
 
 export interface TeamMember {
   id: string;
@@ -74,7 +77,7 @@ export const teamMembers: TeamMember[] = [
     name: "Kimberley Grimes",
     qualification: "LCSW",
     image: kimberlyGrimesImg,
-    bio: "Kimberley Grimes is a Licensed Clinical Social Worker who specializes in working one-on-one and in groups with children, adolescents, and their families. Kim has a profound belief in the inherent strength and propensity for growth of the family. Kim has a long professional history helping youths and families develop effective coping skills, behavioral and emotional resilience, and healthier relationships. Before joining In Step, Kim worked in various settings: foster care, medical communities, outpatient and in-home settings. In addition to her individual psychotherapy work at In Step, Kim leads Stepping Stones Social IQ Development groups, Teen Interpersonal Groups, and Social IQ Development Groups for Teens on the spectrum. After receiving her Bachelor’s degree in Child and Family Development from Virginia Tech, Kim earned two master’s degrees, one in Social Work and the other in Human and Community Development from the University of Illinois, Urbana-Champaign. When she is not treating clients, Kim enjoys spending time with her husband and two sons.\n\nSPACE- Supportive Parenting for Anxious Childhood Emotions:\n\nI’m excited to share the expansion of the therapeutic services I offer to families in Virginia and Vermont by now providing individual and group S.P.A.C.E.\nThis program works with parents and caregivers to explore how their child’s/teen’s/young adult’s anxiety or OCD impacts the entire family, while learning effective strategies and creating clear plans to manage anxiety and foster a calmer home environment.\nDeveloped by Dr. Eli Lebowitz at the Yale Child Study Center, SPACE has been tested and found to be efficacious in randomized controlled clinical trials. Check out this brief video where Dr. Lebowitz explains the program and reach out to me to learn how we can work together to support your anxious child.",
+    bio: "Kimberley Grimes is a Licensed Clinical Social Worker specializing in individual, family, and group therapy for children, adolescents, and their families. She believes in the inherent strength of families and their capacity for growth, resilience, and healing. Kim helps clients develop effective coping skills, strengthen emotional and behavioral resilience, and build healthier, more connected relationships.<br><br>Kim earned her bachelor's degree in Child and Family Development from Virginia Tech and holds two master's degrees from the University of Illinois at Urbana-Champaign in Social Work and Human and Community Development. Her experience spans foster care, medical settings, outpatient mental health clinics, and in-home therapy, giving her a well-rounded understanding of the challenges families face.<br><br>At In Step, Kim provides individual therapy for teens and adults, parenting support, and structured parent coaching. She also leads therapeutic social skills groups, including Stepping Stones Social IQ Development Groups, Parenting Groups, and Teen Interpersonal Groups—focused on emotional regulation, peer connection, and interpersonal effectiveness.<br><br>Kim also offers S.P.A.C.E. (Supportive Parenting for Anxious Childhood Emotions), an evidence-based, parent-based treatment developed by Dr. Eli Lebowitz to help families reduce accommodation and respond more effectively to a child's, teen's, or young adult's anxiety or OCD, including ARFID and challenges related to failure to launch. S.P.A.C.E. works directly with parents to reduce accommodation of anxiety, strengthen caregiver responses, and support lasting change across the family system. Parents gain practical, concrete strategies to build resilience and create a calmer, more confident home environment. This service is available in both individual and group formats. Watch Dr. Lebowitz's TEDx Talk to learn more: <a href=\"https://www.ted.com/talks/dr_eli_lebowitz_rethinking_treatment_for_child_anxiety_and_ocd\" target=\"_blank\">https://www.ted.com/talks/dr_eli_lebowitz_rethinking_treatment_for_child_anxiety_and_ocd</a><br><br>Kim partners closely with individuals and families to create personalized, strengths-based treatment plans that align with their values and support lasting change. Contact Kim to learn more about how she can support you and your family.",
     email: "admin@insteppc.com"
   },
   {
@@ -152,6 +155,33 @@ export const teamMembers: TeamMember[] = [
     qualification: "LPC, CGP",
     image: maryShuffletonImg,
     bio: "Mary Shuffleton is a Licensed Professional Counselor and a Certified Group Psychotherapist. Mary helps her clients “reduce the impact of stress on their lives, view themselves more clearly and accurately, and address destructive patterns of behavior that are obstacles to happiness.” Mary believes strongly “in a collaborative treatment team approach especially when working with kids and teens where parents are a critical part of the therapeutic process.” Using a combination of approaches – DBT (dialectical behavioral therapy), CBT (cognitive behavioral therapy), Parenting IQ coaching, Relational Psychotherapy, and Psychodynamic Psychotherapy – Mary provides therapy to kids, teens, and adults who struggle with a variety of mental health issues including depression, anxiety, and emotional dysregulation. She especially loves working with people in groups as she believes “groups provide a highly effective environment for skill-building, personal growth, and healing.” Mary has additional training in play therapy and utilizes this type of therapy for young children. In her free time, Mary loves reading, yoga, hiking, and traveling with family and friends. She received her Master’s in Counseling Psychology at Gonzaga University in Spokane, Washington.",
+    email: "admin@insteppc.com",
+    imagePosition: "object-top"
+  },
+  {
+    id: "monica-manaotl",
+    name: "Monica Manaotl",
+    qualification: "Office Manager",
+    image: monicaManaotlImg,
+    bio: "",
+    email: "admin@insteppc.com",
+    imagePosition: "object-top"
+  },
+  {
+    id: "maya-dias",
+    name: "Maya Dias",
+    qualification: "Business Manager",
+    image: mayaDiasImg,
+    bio: "",
+    email: "admin@insteppc.com",
+    imagePosition: "object-top"
+  },
+  {
+    id: "inga-mency",
+    name: "Inga Mency",
+    qualification: "Practice Manager (on leave)",
+    image: ingaMencyImg,
+    bio: "",
     email: "admin@insteppc.com",
     imagePosition: "object-top"
   },

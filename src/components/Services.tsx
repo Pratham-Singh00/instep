@@ -6,7 +6,7 @@ import { SmartLink } from "@/components/SmartLink";
 import individualImage from "@/assets/individual-therapy.jpg";
 import groupImage from "@/assets/group-therapy.jpg";
 import familyImage from "@/assets/family-therapy.jpg";
-import psychologicalTestingImage from "@/assets/psych-test-extreme.png";
+import psychologicalTestingImage from "@/assets/psych-test-extreme.jpg";
 
 const Services = () => {
   const {

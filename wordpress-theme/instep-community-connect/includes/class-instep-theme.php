@@ -395,11 +395,8 @@ class Instep_Theme
     {
         $content = $this->get_default_content();
         
-        // Fetch team members from database and override default content
-        $team_members = $this->get_team_members_from_db();
-        if (!empty($team_members)) {
-            $content['team']['members'] = $team_members;
-        }
+        // Always use team members from default content (includes admin staff)
+        // Database team members can be added later if needed
         
         return rest_ensure_response($content);
     }
