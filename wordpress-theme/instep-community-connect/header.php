@@ -10,6 +10,9 @@
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
+    <script>
+        window.INSTEP_THEME_URI = '<?php echo esc_url(INSTEP_THEME_URI); ?>';
+    </script>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

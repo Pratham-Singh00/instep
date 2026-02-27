@@ -232,7 +232,6 @@ export interface FooterContent {
   };
   bottomBar: {
     legal?: string;
-    developer?: FooterLinkItem;
     links: FooterLinkItem[];
   };
 }

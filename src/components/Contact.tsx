@@ -194,7 +194,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div>
+          <div id="contact-form">
             <Card className="card-elevated">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">

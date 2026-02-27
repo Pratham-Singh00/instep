@@ -87,26 +87,6 @@ const CommunityPrograms = () => {
             );
           })}
         </div>
-        {/* Emergency Contact Banner */}
-        <div className="card-elevated p-8 text-center border-l-4 border-l-destructive">
-          <h3 className="text-xl font-bold mb-4 text-destructive">{programs.crisisBanner.heading}</h3>
-          <p className="text-muted-foreground mb-6">{programs.crisisBanner.description}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="destructive" className="font-semibold" asChild>
-              <SmartLink href={programs.crisisBanner.primaryCta.url || "tel:988"}>
-                {programs.crisisBanner.primaryCta.label}
-              </SmartLink>
-            </Button>
-            {programs.crisisBanner.secondaryCta ? (
-              <Button className="btn-hero" asChild>
-                <SmartLink href={programs.crisisBanner.secondaryCta.url || "#"}>
-                  {programs.crisisBanner.secondaryCta.label}
-                </SmartLink>
-              </Button>
-            ) : null}
-          </div>
-        </div>
-
       </div>
     </section>
   );

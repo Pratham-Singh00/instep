@@ -2,15 +2,15 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useContent } from "@/context/ContentContext";
 import { getIconByName } from "@/lib/icon-map";
+import { getAssetUrl } from "@/lib/utils";
 import { SmartLink } from "@/components/SmartLink";
-import heroImageFallback from "@/assets/hero-image.jpg";
 
 const Hero = () => {
   const {
     content: { hero },
   } = useContent();
 
-  const backgroundImage = hero.backgroundImage || heroImageFallback;
+  const backgroundImage = hero.backgroundImage || getAssetUrl("hero-image.jpg");
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">

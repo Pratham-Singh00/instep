@@ -88,12 +88,13 @@
     "storyHeading": "Our Story & Mission",
     "storyParagraphs": [
       "Founded with the vision of walking alongside individuals on their mental health journey, In Step has grown from a small practice to serving diverse populations with specialized care.",
-      "We specialize in offering a wide range of group treatments including our renowned DBT skills groups and Stepping Stones social skills for children and teens.",
+      "We specialize in offering a wide range of group treatments and individual services to children, adolescents, and adults including our renowned DBT Skills Groups and Stepping Stones social skills.",
       "Our team takes special care to match individuals with appropriate support chronologically, developmentally, and emotionally, ensuring that every person receives the most effective and personalized care possible."
     ],
     "certificationsHeading": "Our Expertise & Certifications",
     "certifications": [
       "Licensed Clinical Professionals",
+      "Internal Family Systems Level 1",
       "Stepping Stones Certified",
       "Parenting IQ Training/Coaching Certified",
       "DBT Skills",
@@ -174,7 +175,7 @@
         "image": null,
         "alt": "Professional mental health counselor having a one-on-one session with a client in a comfortable office setting",
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
@@ -185,7 +186,7 @@
         "image": null,
         "alt": "Diverse group of people in a supportive group therapy session sitting in a circle",
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
@@ -196,7 +197,7 @@
         "image": null,
         "alt": "Happy diverse family with parents and children in a warm, supportive therapy environment",
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       },
@@ -207,7 +208,7 @@
         "image": null,
         "alt": "Professional assessment and testing environment for psychological evaluation",
         "cta": {
-          "label": "Learn More",
+          "label": "Contact Us",
           "url": "#contact"
         }
       }
@@ -216,7 +217,7 @@
       "heading": "Ready to Take the First Step?",
       "description": "Our experienced team is here to support you on your mental health journey. Contact us today to learn more about our services and how we can help.",
       "primaryCta": {
-        "label": "Schedule a Consultation",
+        "label": "Contact Us",
         "url": "#contact"
       },
       "secondaryCta": {
@@ -234,56 +235,56 @@
         "title": "DBT Skills Groups",
         "description": "Dialectical Behavior Therapy skills training in a supportive group environment, focusing on mindfulness, emotion regulation, and interpersonal effectiveness.",
         "duration": "38 weeks",
-        "location": "Group therapy rooms",
+        "location": "In-person",
         "features": [
           "Mindfulness training",
           "Emotion regulation",
           "Distress tolerance",
           "Interpersonal skills"
         ],
-        "badge": "Evidence-Based",
+        "badge": "Ages 12-14, 15-18, Adult",
         "badgeVariant": "default",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
         "icon": "BookOpen",
-        "title": "Stepping Stones (Youth)",
-        "description": "Evidence-based social skills development for children and teens by Cathi Cohen, focusing on building healthy relationships and emotional intelligence.",
+        "title": "Stepping Stones TM (Youth)",
+        "description": "Evidence-based social skills development for children ages 7-12 created by Cathi Cohen, LCSW, CGP. Cathi is Stepping Stones TM and Parenting IQ TM certified and trains our specialists.",
         "duration": "40 weeks",
-        "location": "Youth-friendly spaces",
+        "location": "In-person",
         "features": [
           "Social skills training",
           "Peer interaction",
           "Confidence building",
           "Parent involvement"
         ],
-        "badge": "Ages 8-18",
+        "badge": "Ages 7-12",
         "badgeVariant": "default",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
         "icon": "Home",
-        "title": "Parenting IQ Program",
-        "description": "Evidence-based parenting education and support to strengthen family relationships and improve communication.",
+        "title": "Parenting IQ TM Program",
+        "description": "Evidence-based parenting education and support created by Cathi Cohen, LCSW, CGP. Cathi is Parenting IQ TM and Stepping Stones TM certified and trains our parent coaches.",
         "duration": "12 weeks",
-        "location": "Family therapy rooms",
+        "location": "In-person",
         "features": [
           "Communication skills",
           "Boundary setting",
           "Discipline strategies",
           "Family dynamics"
         ],
-        "badge": "Family-Focused",
+        "badge": "All Ages",
         "badgeVariant": "default",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
@@ -302,7 +303,7 @@
         "badgeVariant": "default",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
@@ -317,11 +318,11 @@
           "Parent-Focused",
           "Anxiety Management"
         ],
-        "badge": "For Parents",
+        "badge": "All Ages",
         "badgeVariant": "default",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
@@ -329,18 +330,18 @@
         "title": "Women Psychotherapy Group",
         "description": "A supportive space for women to connect, share experiences, and grow together in a safe environment.",
         "duration": "Ongoing",
-        "location": "Group therapy rooms",
+        "location": "In-person",
         "features": [
           "Connection & Support",
           "Shared Experiences",
           "Personal Growth",
           "Safe Space"
         ],
-        "badge": "Women's Group",
+        "badge": "Ages 40-60",
         "badgeVariant": "default",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
@@ -348,18 +349,18 @@
         "title": "Neurodivergent Groups",
         "description": "Support, skills, and connection for neurodivergent individuals in a neuro-affirming environment.",
         "duration": "Ongoing",
-        "location": "Group therapy rooms",
+        "location": "In-person",
         "features": [
           "Neuro-affirming",
           "Skill Building",
           "Peer Support",
           "Understanding"
         ],
-        "badge": "Neurodivergent",
+        "badge": "Ages 6-10, 11-13, 14-19",
         "badgeVariant": "default",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
@@ -367,18 +368,18 @@
         "title": "Confidence/Social Groups",
         "description": "Building social confidence and connection through shared experiences and guided interaction.",
         "duration": "Ongoing",
-        "location": "Group therapy rooms",
+        "location": "In-person",
         "features": [
           "Social Confidence",
           "Interaction Skills",
           "Group Activities",
           "Supportive Feedback"
         ],
-        "badge": "Social Skills",
+        "badge": "Ages 5-12",
         "badgeVariant": "default",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       }
     ],
@@ -443,13 +444,10 @@
       "heading": "Ready to Start Your Journey?",
       "description": "Join hundreds of others who have found hope, healing, and transformation through our compassionate mental health services and community programs.",
       "primaryCta": {
-        "label": "Begin Your Healing Journey",
+        "label": "Contact Us",
         "url": "#contact"
       },
-      "secondaryCta": {
-        "label": "Share Your Story",
-        "url": "#contact"
-      }
+      "secondaryCta": null
     }
   },
   "getInvolved": {
@@ -484,8 +482,8 @@
           "Group Facilitation"
         ],
         "cta": {
-          "label": "Apply Now",
-          "url": "#contact"
+          "label": "Contact Us",
+          "url": "https://docs.google.com/forms/d/e/1FAIpQLSfbzXO8ahPGr1RwdVHPjXa0C9N-IsQrTTUdqhonDhSaHYgJfg/viewform"
         }
       },
       {
@@ -499,7 +497,7 @@
           "School Collaboration"
         ],
         "cta": {
-          "label": "Register",
+          "label": "Contact Us",
           "url": "#contact"
         }
       }
@@ -723,11 +721,7 @@
       ]
     },
     "bottomBar": {
-      "legal": "developed by",
-      "developer": {
-        "label": "DMV Web Designs",
-        "href": "https://dmvwebdesigns.net/"
-      },
+      "legal": "developed by DMV Web Designs.",
       "links": [
         {
           "label": "Privacy Policy",

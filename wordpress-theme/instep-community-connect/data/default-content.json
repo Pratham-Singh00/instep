@@ -723,11 +723,7 @@
       ]
     },
     "bottomBar": {
-      "legal": "developed by",
-      "developer": {
-        "label": "DMV Web Designs",
-        "href": "https://dmvwebdesigns.net/"
-      },
+      "legal": "developed by DMV Web Designs.",
       "links": [
         {
           "label": "Privacy Policy",

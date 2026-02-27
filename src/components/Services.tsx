@@ -2,11 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useContent } from "@/context/ContentContext";
 import { getIconByName } from "@/lib/icon-map";
+import { getAssetUrl } from "@/lib/utils";
 import { SmartLink } from "@/components/SmartLink";
-import individualImage from "@/assets/individual-therapy.jpg";
-import groupImage from "@/assets/group-therapy.jpg";
-import familyImage from "@/assets/family-therapy.jpg";
-import psychologicalTestingImage from "@/assets/psych-test-extreme.jpg";
 
 const Services = () => {
   const {
@@ -21,14 +18,14 @@ const Services = () => {
     }
 
     // ABSOLUTE OVERRIDE - PRIORITY 1
-    if (index === 3) return psychologicalTestingImage;
-    if (service.title === "Psychological Testing") return psychologicalTestingImage;
+    if (index === 3) return getAssetUrl("psych-test-extreme.jpg");
+    if (service.title === "Psychological Testing") return getAssetUrl("psych-test-extreme.jpg");
 
     if (service.image) return service.image;
-    if (index === 0) return individualImage;
-    if (index === 1) return groupImage;
-    if (index === 2) return familyImage;
-    return psychologicalTestingImage;
+    if (index === 0) return getAssetUrl("individual-therapy.jpg");
+    if (index === 1) return getAssetUrl("group-therapy.jpg");
+    if (index === 2) return getAssetUrl("family-therapy.jpg");
+    return getAssetUrl("psych-test-extreme.jpg");
   };
 
   return (

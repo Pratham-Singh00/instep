@@ -1,105 +1,19 @@
 {
   "index.html": {
-    "file": "assets/index-BFm6qWhR.js",
+    "file": "assets/index-CwCILTJQ.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "css": [
-      "assets/index-BQ9o_Xiw.css"
+      "assets/index-CMWk7RYd.css"
     ],
     "assets": [
       "assets/hero-image-Q-w7K6nX.jpg",
       "assets/individual-therapy-Cfalj4BQ.jpg",
       "assets/group-therapy-C78tKrfl.jpg",
       "assets/family-therapy-BY7XkmCP.jpg",
-      "assets/logo-BBih3v4f.png",
-      "assets/psych-test-extreme-DDU1XZY1.jpg",
-      "assets/CathieCohen-CwMKZFj4.jpg",
-      "assets/ChristinaMarcone-CNvUxRVB.jpg",
-      "assets/DaleSorg-q5oh5pUu.jpg",
-      "assets/DoveCohen-BVLtzyJR.jpg",
-      "assets/EricaCraig-Mann-pvYe9Fwi.jpg",
-      "assets/ErikaCarlson-nWIBiyaH.jpg",
-      "assets/JamesSebben-QfGcx2BN.jpg",
-      "assets/JenniferCase-Cb16CgqN.jpg",
-      "assets/KeithEwell-CLgcH-RF.jpg",
-      "assets/KellyMurphy-DCaIF4sq.jpg",
-      "assets/KimberlyGrimes-Bg3ZvMcg.jpg",
-      "assets/MaryShuffleton-CJY1QSCY.jpg",
-      "assets/RachelCherian-CS_YQ6JO.jpg",
-      "assets/SalimaJiwa-B3wNGw1O.jpg",
-      "assets/ZaraAhmad-fEgAYS4L.jpg",
-      "assets/Monica Manaotl Picture-DVGWeNuF.JPG",
-      "assets/Maya Dias Headshot-DKRYaCxQ.jpg"
+      "assets/logo-BBih3v4f.png"
     ]
-  },
-  "src/assets/CathieCohen.jpg": {
-    "file": "assets/CathieCohen-CwMKZFj4.jpg",
-    "src": "src/assets/CathieCohen.jpg"
-  },
-  "src/assets/ChristinaMarcone.jpg": {
-    "file": "assets/ChristinaMarcone-CNvUxRVB.jpg",
-    "src": "src/assets/ChristinaMarcone.jpg"
-  },
-  "src/assets/DaleSorg.jpg": {
-    "file": "assets/DaleSorg-q5oh5pUu.jpg",
-    "src": "src/assets/DaleSorg.jpg"
-  },
-  "src/assets/DoveCohen.jpg": {
-    "file": "assets/DoveCohen-BVLtzyJR.jpg",
-    "src": "src/assets/DoveCohen.jpg"
-  },
-  "src/assets/EricaCraig-Mann.jpg": {
-    "file": "assets/EricaCraig-Mann-pvYe9Fwi.jpg",
-    "src": "src/assets/EricaCraig-Mann.jpg"
-  },
-  "src/assets/ErikaCarlson.jpg": {
-    "file": "assets/ErikaCarlson-nWIBiyaH.jpg",
-    "src": "src/assets/ErikaCarlson.jpg"
-  },
-  "src/assets/JamesSebben.jpg": {
-    "file": "assets/JamesSebben-QfGcx2BN.jpg",
-    "src": "src/assets/JamesSebben.jpg"
-  },
-  "src/assets/JenniferCase.jpg": {
-    "file": "assets/JenniferCase-Cb16CgqN.jpg",
-    "src": "src/assets/JenniferCase.jpg"
-  },
-  "src/assets/KeithEwell.jpg": {
-    "file": "assets/KeithEwell-CLgcH-RF.jpg",
-    "src": "src/assets/KeithEwell.jpg"
-  },
-  "src/assets/KellyMurphy.jpg": {
-    "file": "assets/KellyMurphy-DCaIF4sq.jpg",
-    "src": "src/assets/KellyMurphy.jpg"
-  },
-  "src/assets/KimberlyGrimes.jpg": {
-    "file": "assets/KimberlyGrimes-Bg3ZvMcg.jpg",
-    "src": "src/assets/KimberlyGrimes.jpg"
-  },
-  "src/assets/MaryShuffleton.jpg": {
-    "file": "assets/MaryShuffleton-CJY1QSCY.jpg",
-    "src": "src/assets/MaryShuffleton.jpg"
-  },
-  "src/assets/Maya Dias Headshot.jpg": {
-    "file": "assets/Maya Dias Headshot-DKRYaCxQ.jpg",
-    "src": "src/assets/Maya Dias Headshot.jpg"
-  },
-  "src/assets/Monica Manaotl Picture.JPG": {
-    "file": "assets/Monica Manaotl Picture-DVGWeNuF.JPG",
-    "src": "src/assets/Monica Manaotl Picture.JPG"
-  },
-  "src/assets/RachelCherian.jpg": {
-    "file": "assets/RachelCherian-CS_YQ6JO.jpg",
-    "src": "src/assets/RachelCherian.jpg"
-  },
-  "src/assets/SalimaJiwa.jpg": {
-    "file": "assets/SalimaJiwa-B3wNGw1O.jpg",
-    "src": "src/assets/SalimaJiwa.jpg"
-  },
-  "src/assets/ZaraAhmad.jpg": {
-    "file": "assets/ZaraAhmad-fEgAYS4L.jpg",
-    "src": "src/assets/ZaraAhmad.jpg"
   },
   "src/assets/family-therapy.jpg": {
     "file": "assets/family-therapy-BY7XkmCP.jpg",
@@ -120,9 +34,5 @@
   "src/assets/logo.png": {
     "file": "assets/logo-BBih3v4f.png",
     "src": "src/assets/logo.png"
-  },
-  "src/assets/psych-test-extreme.jpg": {
-    "file": "assets/psych-test-extreme-DDU1XZY1.jpg",
-    "src": "src/assets/psych-test-extreme.jpg"
   }
 }
