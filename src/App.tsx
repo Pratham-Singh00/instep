@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { ContentProvider } from "@/context/ContentContext";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -18,7 +18,9 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const RouterComponent = typeof window !== "undefined" && window.instepCommunityConnect ? HashRouter : BrowserRouter;
+// Always use BrowserRouter for better SEO and cleaner URLs
+// WordPress rewrite rules ensure all routes serve the React app
+const RouterComponent = BrowserRouter;
 
 const App = () => (
   <ErrorBoundary>

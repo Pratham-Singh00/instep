@@ -9,7 +9,7 @@
     },
     "primaryCta": {
       "label": "Contact Us",
-      "url": "#contact"
+      "url": "#contact-form"
     },
     "menu": [
       {
@@ -61,8 +61,8 @@
       "url": "#services"
     },
     "secondaryCta": {
-      "label": "Get Started Today",
-      "url": "#contact"
+      "label": "Contact Us",
+      "url": "#contact-form"
     },
     "stats": [
       {
@@ -155,8 +155,8 @@
       "heading": "Join Our Community of Healing",
       "description": "Experience the In Step difference for yourself. Our compassionate team is ready to walk alongside you on your journey toward mental wellness and personal growth.",
       "primaryCta": {
-        "label": "Schedule Your First Visit",
-        "url": "#contact"
+        "label": "Contact Us",
+        "url": "#contact-form"
       },
       "secondaryCta": {
         "label": "Learn More About Our Team",
@@ -176,7 +176,7 @@
         "alt": "Professional mental health counselor having a one-on-one session with a client in a comfortable office setting",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
@@ -187,7 +187,7 @@
         "alt": "Diverse group of people in a supportive group therapy session sitting in a circle",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
@@ -198,7 +198,7 @@
         "alt": "Happy diverse family with parents and children in a warm, supportive therapy environment",
         "cta": {
           "label": "Contact Us",
-          "url": "#contact"
+          "url": "#contact-form"
         }
       },
       {
@@ -218,7 +218,7 @@
       "description": "Our experienced team is here to support you on your mental health journey. Contact us today to learn more about our services and how we can help.",
       "primaryCta": {
         "label": "Contact Us",
-        "url": "#contact"
+        "url": "#contact-form"
       },
       "secondaryCta": {
         "label": "Call 703-876-8480",
@@ -251,8 +251,8 @@
       },
       {
         "icon": "BookOpen",
-        "title": "Stepping Stones TM (Youth)",
-        "description": "Evidence-based social skills development for children ages 7-12 created by Cathi Cohen, LCSW, CGP. Cathi is Stepping Stones TM and Parenting IQ TM certified and trains our specialists.",
+        "title": "Stepping Stones™ (Youth)",
+        "description": "Evidence-based social skills development for children ages 7-12 created by Cathi Cohen, LCSW, CGP. Cathi is Stepping Stones™ and Parenting IQ™ certified and trains our specialists.",
         "duration": "40 weeks",
         "location": "In-person",
         "features": [
@@ -270,8 +270,8 @@
       },
       {
         "icon": "Home",
-        "title": "Parenting IQ TM Program",
-        "description": "Evidence-based parenting education and support created by Cathi Cohen, LCSW, CGP. Cathi is Parenting IQ TM and Stepping Stones TM certified and trains our parent coaches.",
+        "title": "Parenting IQ™ Program",
+        "description": "Evidence-based parenting education and support created by Cathi Cohen, LCSW, CGP. Cathi is Parenting IQ™ and Stepping Stones™ certified and trains our parent coaches.",
         "duration": "12 weeks",
         "location": "In-person",
         "features": [
@@ -445,7 +445,7 @@
       "description": "Join hundreds of others who have found hope, healing, and transformation through our compassionate mental health services and community programs.",
       "primaryCta": {
         "label": "Contact Us",
-        "url": "#contact"
+        "url": "#contact-form"
       },
       "secondaryCta": null
     }
@@ -483,7 +483,7 @@
         ],
         "cta": {
           "label": "Contact Us",
-          "url": "https://docs.google.com/forms/d/e/1FAIpQLSfbzXO8ahPGr1RwdVHPjXa0C9N-IsQrTTUdqhonDhSaHYgJfg/viewform"
+          "url": "#contact"
         }
       },
       {
@@ -527,7 +527,7 @@
       "description": "Whether you're looking for professional training, employee mental health programs, or community partnership opportunities, we'd love to hear from you.",
       "primaryCta": {
         "label": "Contact Us",
-        "url": "#contact"
+        "url": "#contact-form"
       },
       "secondaryCta": {
         "label": "Call 703-876-8480",

@@ -130,6 +130,9 @@ const BlogPost = () => {
           image={post.featured_image}
           type="article"
           url={`/blog/${post.slug}`}
+          author={post.author}
+          datePublished={post.date}
+          dateModified={post.date}
         />
       )}
       <Header />

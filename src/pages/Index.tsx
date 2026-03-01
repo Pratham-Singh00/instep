@@ -20,7 +20,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <SEO
         title="InStep PC | Mental Health & Therapy Services in Fairfax, VA"
-        description="Premere mental health group in Fairfax, Northern Virginia. Offering individual therapy, group counselling, psychological testing, and community support programs for over 30 years."
+        description="Premier mental health group practice in Fairfax, Northern Virginia. Offering individual therapy, group counseling, psychological testing, and community support programs for over 30 years."
       />
       <Header />
       <main>

@@ -24,7 +24,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('INSTEP_THEME_VERSION', '1.61.0');
+define('INSTEP_THEME_VERSION', '7.6.0');
 define('INSTEP_THEME_DIR', get_template_directory());
 define('INSTEP_THEME_URI', get_template_directory_uri());
 
@@ -135,3 +135,146 @@ function instep_viewport_meta(): void
     echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">';
 }
 add_action('wp_head', 'instep_viewport_meta', 1);
+
+/**
+ * Add baseline SEO metadata and structured data for crawlers.
+ */
+function instep_output_seo_meta(): void
+{
+    $site_name = get_bloginfo('name') ?: 'InStep PC';
+    $title = wp_get_document_title() ?: $site_name;
+    $og_image = trailingslashit(INSTEP_THEME_URI) . 'assets/logo.png';
+    
+    // Handle blog posts specifically
+    if (is_singular('post')) {
+        $post = get_post();
+        $description = $post->post_excerpt ?: wp_trim_words(strip_tags($post->post_content), 30);
+        $canonical = home_url('/blog/' . $post->post_name);
+        
+        // Get featured image if available
+        if (has_post_thumbnail($post->ID)) {
+            $thumbnail_id = get_post_thumbnail_id($post->ID);
+            $thumbnail_url = wp_get_attachment_image_url($thumbnail_id, 'large');
+            if ($thumbnail_url) {
+                $og_image = $thumbnail_url;
+            }
+        }
+        
+        // Get author info
+        $custom_author = get_post_meta($post->ID, '_instep_custom_author', true);
+        $author_name = $custom_author ?: get_the_author_meta('display_name', $post->post_author);
+        
+        echo '<meta name="description" content="' . esc_attr($description) . '">';
+        echo '<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">';
+        echo '<link rel="canonical" href="' . esc_url($canonical) . '">';
+
+        echo '<meta property="og:type" content="article">';
+        echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '">';
+        echo '<meta property="og:title" content="' . esc_attr($post->post_title) . '">';
+        echo '<meta property="og:description" content="' . esc_attr($description) . '">';
+        echo '<meta property="og:url" content="' . esc_url($canonical) . '">';
+        echo '<meta property="og:image" content="' . esc_url($og_image) . '">';
+        echo '<meta property="og:locale" content="en_US">';
+        echo '<meta property="article:published_time" content="' . esc_attr(get_the_date('c', $post)) . '">';
+        echo '<meta property="article:modified_time" content="' . esc_attr(get_the_modified_date('c', $post)) . '">';
+        echo '<meta property="article:author" content="' . esc_attr($author_name) . '">';
+
+        echo '<meta name="twitter:card" content="summary_large_image">';
+        echo '<meta name="twitter:title" content="' . esc_attr($post->post_title) . '">';
+        echo '<meta name="twitter:description" content="' . esc_attr($description) . '">';
+        echo '<meta name="twitter:image" content="' . esc_url($og_image) . '">';
+
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'BlogPosting',
+            'headline' => $post->post_title,
+            'image' => $og_image,
+            'author' => [
+                '@type' => ($author_name === 'In Step Team' || $author_name === 'In Step PC Team') ? 'Organization' : 'Person',
+                'name' => $author_name,
+            ],
+            'publisher' => [
+                '@type' => 'Organization',
+                'name' => 'InStep PC',
+                'logo' => [
+                    '@type' => 'ImageObject',
+                    'url' => trailingslashit(INSTEP_THEME_URI) . 'assets/logo.png'
+                ]
+            ],
+            'url' => $canonical,
+            'datePublished' => get_the_date('c', $post),
+            'dateModified' => get_the_modified_date('c', $post),
+            'description' => $description,
+            'mainEntityOfPage' => [
+                '@type' => 'WebPage',
+                '@id' => $canonical
+            ]
+        ];
+
+        echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
+        
+    } else {
+        // Default homepage/other pages
+        $description = 'Professional mental health therapy, counseling, and group programs in Fairfax, Northern Virginia and the DC area.';
+        $canonical = is_front_page()
+            ? home_url('/')
+            : home_url(add_query_arg([], $GLOBALS['wp']->request ?? ''));
+
+        echo '<meta name="description" content="' . esc_attr($description) . '">';
+        echo '<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">';
+        echo '<link rel="canonical" href="' . esc_url($canonical) . '">';
+
+        echo '<meta property="og:type" content="website">';
+        echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '">';
+        echo '<meta property="og:title" content="' . esc_attr($title) . '">';
+        echo '<meta property="og:description" content="' . esc_attr($description) . '">';
+        echo '<meta property="og:url" content="' . esc_url($canonical) . '">';
+        echo '<meta property="og:image" content="' . esc_url($og_image) . '">';
+        echo '<meta property="og:locale" content="en_US">';
+
+        echo '<meta name="twitter:card" content="summary_large_image">';
+        echo '<meta name="twitter:title" content="' . esc_attr($title) . '">';
+        echo '<meta name="twitter:description" content="' . esc_attr($description) . '">';
+        echo '<meta name="twitter:image" content="' . esc_url($og_image) . '">';
+
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'MedicalClinic',
+            'name' => 'InStep PC',
+            'url' => home_url('/'),
+            'image' => $og_image,
+            'email' => 'admin@insteppc.com',
+            'telephone' => '+1-703-876-8480',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => '8500 Executive Park Avenue, Suite 204',
+                'addressLocality' => 'Fairfax',
+                'addressRegion' => 'VA',
+                'postalCode' => '22031',
+                'addressCountry' => 'US',
+            ],
+            'sameAs' => [
+                'https://www.facebook.com/Insteppc/',
+            ],
+        ];
+
+        echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
+    }
+}
+add_action('wp_head', 'instep_output_seo_meta', 5);
+
+/**
+ * Disable WordPress automatic updates.
+ *
+ * Note: PHP version updates are managed by the hosting provider and cannot be
+ * controlled from WordPress/theme code.
+ */
+function instep_disable_auto_updates(): void
+{
+    add_filter('automatic_updater_disabled', '__return_true');
+    add_filter('auto_update_core', '__return_false');
+    add_filter('auto_update_plugin', '__return_false');
+    add_filter('auto_update_theme', '__return_false');
+    add_filter('auto_update_translation', '__return_false');
+}
+add_action('init', 'instep_disable_auto_updates');

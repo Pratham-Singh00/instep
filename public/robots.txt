@@ -5,4 +5,5 @@ Disallow: /wp-load.php
 Disallow: /wp-login.php
 Disallow: /xmlrpc.php
 
+Host: https://insteppc.com
 Sitemap: https://insteppc.com/sitemap.xml

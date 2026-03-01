@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { SmartLink } from "@/components/SmartLink";
 import { Home, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/SEO";
 
 const NotFound = () => {
   const location = useLocation();
@@ -13,6 +14,12 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10">
+      <SEO
+        title="Page Not Found | InStep PC"
+        description="The page you requested could not be found. Visit InStep PC to explore mental health services and resources."
+        url={location.pathname}
+        noindex
+      />
       <div className="text-center p-8 max-w-md">
         <div className="mb-6">
           <h1 className="text-9xl font-bold text-primary/20 mb-2">404</h1>

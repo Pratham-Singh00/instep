@@ -29,12 +29,24 @@ class Instep_Theme
     private function __construct()
     {
         add_action('init', [$this, 'register_cpts']);
+        add_action('init', [$this, 'add_react_router_rewrites']);
+        add_action('template_redirect', [$this, 'handle_react_router_redirects']);
         add_action('rest_api_init', [$this, 'register_rest_routes']);
         add_action('admin_menu', [$this, 'register_admin_menu']);
         add_action('admin_post_instep_save_content', [$this, 'handle_admin_form']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_assets']);
         add_action('save_post_team_member', [$this, 'save_team_member_meta']);
         add_action('after_switch_theme', [$this, 'on_theme_activation']);
+        
+        // Filter post permalinks to use /blog/{slug} structure
+        add_filter('post_link', [$this, 'custom_post_permalink'], 10, 2);
+        add_filter('post_type_link', [$this, 'custom_post_permalink'], 10, 2);
+        
+        // Prevent WordPress canonical redirects for React routes
+        add_filter('redirect_canonical', [$this, 'prevent_canonical_redirect_for_react_routes'], 10, 2);
+        
+        // Prevent WordPress from querying posts when React is handling the route
+        add_action('pre_get_posts', [$this, 'disable_post_query_for_react_routes']);
     }
 
     public function on_theme_activation(): void
@@ -42,6 +54,112 @@ class Instep_Theme
         $this->register_cpts();
         $this->populate_team_members();
         flush_rewrite_rules();
+    }
+
+    /**
+     * Add rewrite rules for React Router paths
+     * This ensures that direct navigation to /blog/*, /team/* works correctly
+     * by serving the main React app which will handle client-side routing
+     */
+    public function add_react_router_rewrites(): void
+    {
+        // Catch all blog post routes - serve the main page with custom query var
+        add_rewrite_rule('^blog/([^/]+)/?$', 'index.php?instep_route=blog&instep_slug=$matches[1]', 'top');
+        
+        // Catch blog index
+        add_rewrite_rule('^blog/?$', 'index.php?instep_route=blog', 'top');
+        
+        // Catch all team member routes
+        add_rewrite_rule('^team/([^/]+)/?$', 'index.php?instep_route=team&instep_slug=$matches[1]', 'top');
+        
+        // Catch team index
+        add_rewrite_rule('^team/?$', 'index.php?instep_route=team', 'top');
+        
+        // Register custom query vars
+        add_filter('query_vars', function($vars) {
+            $vars[] = 'instep_route';
+            $vars[] = 'instep_slug';
+            return $vars;
+        });
+    }
+
+    /**
+     * Prevent canonical redirects when React is handling the route
+     */
+    public function prevent_canonical_redirect_for_react_routes($redirect_url, $requested_url)
+    {
+        $instep_route = get_query_var('instep_route');
+        
+        // If this is a React route, don't allow WordPress to redirect
+        if ($instep_route) {
+            return false;
+        }
+        
+        return $redirect_url;
+    }
+    
+    /**
+     * Prevent WordPress from querying for posts when React is handling the route
+     */
+    public function disable_post_query_for_react_routes($query)
+    {
+        // Only affect main query, not admin queries
+        if (!$query->is_main_query() || is_admin()) {
+            return;
+        }
+        
+        $instep_route = get_query_var('instep_route');
+        
+        // If this is a React route, tell WordPress not to query for posts
+        if ($instep_route) {
+            $query->set('post_type', 'none'); // Non-existent post type prevents queries
+            $query->is_singular = false;
+            $query->is_single = false;
+            $query->is_404 = false; // Prevent 404 status
+        }
+    }
+    
+    /**
+     * Handle WordPress post previews and single posts
+     * Redirect WordPress post URLs to React blog routes for consistency
+     */
+    public function handle_react_router_redirects(): void
+    {
+        // Check if this is a React route request
+        $instep_route = get_query_var('instep_route');
+        
+        // If this is a React route (blog or team), prevent WordPress from loading posts
+        // WordPress will just serve index.php and React will handle routing
+        if ($instep_route) {
+            // This is a React route - let it through without any WordPress query interference
+            return;
+        }
+        
+        // If this is a preview request, let WordPress handle it natively with single.php
+        if (is_preview() || (isset($_GET['preview']) && $_GET['preview'])) {
+            return;
+        }
+
+        // If this is a WordPress post being accessed via its native WordPress permalink
+        // redirect to React blog route for consistency
+        if (is_singular('post') && !is_admin()) {
+            $post = get_post();
+            if ($post && $post->post_status === 'publish') {
+                wp_redirect(home_url('/blog/' . $post->post_name), 301);
+                exit;
+            }
+        }
+    }
+
+    /**
+     * Customize post permalinks to use /blog/{slug} structure
+     */
+    public function custom_post_permalink($url, $post): string
+    {
+        if ($post->post_type === 'post' && $post->post_status === 'publish') {
+            return home_url('/blog/' . $post->post_name);
+        }
+        return $url;
     }
 
     /**
